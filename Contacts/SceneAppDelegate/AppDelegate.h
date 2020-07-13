@@ -1,5 +1,5 @@
 //
-//  SceneDelegate.h
+//  AppDelegate.h
 //  Contacts
 //
 //  Created by Do Thai Bao on 7/10/20.
@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ContactViewController.h"
 
-@interface SceneDelegate : UIResponder <UIWindowSceneDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow * window;
 

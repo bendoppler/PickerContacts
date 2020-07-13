@@ -7,15 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		533452EF24BA01000098396C /* MockContactTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 533452EE24BA01000098396C /* MockContactTableViewModel.m */; };
+		533452F224BA029C0098396C /* ContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 533452F124BA029C0098396C /* ContactTableViewCell.m */; };
 		534E460D24B85D17006C56B1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 534E460C24B85D17006C56B1 /* AppDelegate.m */; };
 		534E461024B85D17006C56B1 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 534E460F24B85D17006C56B1 /* SceneDelegate.m */; };
-		534E461324B85D17006C56B1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 534E461224B85D17006C56B1 /* ViewController.m */; };
-		534E461624B85D17006C56B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 534E461424B85D17006C56B1 /* Main.storyboard */; };
+		534E461324B85D17006C56B1 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 534E461224B85D17006C56B1 /* ContactViewController.m */; };
 		534E461824B85D19006C56B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 534E461724B85D19006C56B1 /* Assets.xcassets */; };
-		534E461B24B85D19006C56B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 534E461924B85D19006C56B1 /* LaunchScreen.storyboard */; };
 		534E461E24B85D19006C56B1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 534E461D24B85D19006C56B1 /* main.m */; };
 		534E462824B85D19006C56B1 /* ContactsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 534E462724B85D19006C56B1 /* ContactsTests.m */; };
 		534E463324B85D1A006C56B1 /* ContactsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 534E463224B85D1A006C56B1 /* ContactsUITests.m */; };
+		534E464924B86C4B006C56B1 /* ContactTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 534E464824B86C4B006C56B1 /* ContactTableViewModel.m */; };
+		534E464B24B87720006C56B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 534E464A24B87720006C56B1 /* LaunchScreen.storyboard */; };
+		5377209624BC838700AF3195 /* CircleCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 5377209524BC838700AF3195 /* CircleCheckBox.m */; };
+		5377209924BC8F2A00AF3195 /* ContactTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5377209824BC8F2A00AF3195 /* ContactTableViewDataSource.m */; };
+		5377209C24BC8F3500AF3195 /* ContactTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5377209B24BC8F3500AF3195 /* ContactTableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,16 +41,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		533452ED24BA01000098396C /* MockContactTableViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockContactTableViewModel.h; sourceTree = "<group>"; };
+		533452EE24BA01000098396C /* MockContactTableViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MockContactTableViewModel.m; sourceTree = "<group>"; };
+		533452F024BA029C0098396C /* ContactTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactTableViewCell.h; sourceTree = "<group>"; };
+		533452F124BA029C0098396C /* ContactTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewCell.m; sourceTree = "<group>"; };
 		534E460824B85D17006C56B1 /* Contacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Contacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		534E460B24B85D17006C56B1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		534E460C24B85D17006C56B1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		534E460E24B85D17006C56B1 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		534E460F24B85D17006C56B1 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		534E461124B85D17006C56B1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		534E461224B85D17006C56B1 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		534E461524B85D17006C56B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		534E461124B85D17006C56B1 /* ContactViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactViewController.h; sourceTree = "<group>"; };
+		534E461224B85D17006C56B1 /* ContactViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
 		534E461724B85D19006C56B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		534E461A24B85D19006C56B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		534E461C24B85D19006C56B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		534E461D24B85D19006C56B1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		534E462324B85D19006C56B1 /* ContactsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,6 +61,16 @@
 		534E462E24B85D1A006C56B1 /* ContactsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		534E463224B85D1A006C56B1 /* ContactsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactsUITests.m; sourceTree = "<group>"; };
 		534E463424B85D1A006C56B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		534E464724B86C4B006C56B1 /* ContactTableViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactTableViewModel.h; sourceTree = "<group>"; };
+		534E464824B86C4B006C56B1 /* ContactTableViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewModel.m; sourceTree = "<group>"; };
+		534E464A24B87720006C56B1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5377209424BC838700AF3195 /* CircleCheckBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleCheckBox.h; sourceTree = "<group>"; };
+		5377209524BC838700AF3195 /* CircleCheckBox.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircleCheckBox.m; sourceTree = "<group>"; };
+		5377209724BC8F2A00AF3195 /* ContactTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableViewDataSource.h; sourceTree = "<group>"; };
+		5377209824BC8F2A00AF3195 /* ContactTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewDataSource.m; sourceTree = "<group>"; };
+		5377209A24BC8F3500AF3195 /* ContactTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableView.h; sourceTree = "<group>"; };
+		5377209B24BC8F3500AF3195 /* ContactTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTableView.m; sourceTree = "<group>"; };
+		5377209D24BC921000AF3195 /* ContactTableViewDataSourceProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactTableViewDataSourceProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +98,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		533452EC24BA00950098396C /* TestMocks */ = {
+			isa = PBXGroup;
+			children = (
+				5377208A24BC3D5C00AF3195 /* ViewModels */,
+			);
+			path = TestMocks;
+			sourceTree = "<group>";
+		};
 		534E45FF24B85D17006C56B1 = {
 			isa = PBXGroup;
 			children = (
@@ -104,15 +129,11 @@
 		534E460A24B85D17006C56B1 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
-				534E460B24B85D17006C56B1 /* AppDelegate.h */,
-				534E460C24B85D17006C56B1 /* AppDelegate.m */,
-				534E460E24B85D17006C56B1 /* SceneDelegate.h */,
-				534E460F24B85D17006C56B1 /* SceneDelegate.m */,
-				534E461124B85D17006C56B1 /* ViewController.h */,
-				534E461224B85D17006C56B1 /* ViewController.m */,
-				534E461424B85D17006C56B1 /* Main.storyboard */,
+				533452EC24BA00950098396C /* TestMocks */,
+				5377208B24BC3D6E00AF3195 /* PresentationLayer */,
+				534E464024B85D30006C56B1 /* SceneAppDelegate */,
 				534E461724B85D19006C56B1 /* Assets.xcassets */,
-				534E461924B85D19006C56B1 /* LaunchScreen.storyboard */,
+				534E464A24B87720006C56B1 /* LaunchScreen.storyboard */,
 				534E461C24B85D19006C56B1 /* Info.plist */,
 				534E461D24B85D19006C56B1 /* main.m */,
 			);
@@ -135,6 +156,110 @@
 				534E463424B85D1A006C56B1 /* Info.plist */,
 			);
 			path = ContactsUITests;
+			sourceTree = "<group>";
+		};
+		534E464024B85D30006C56B1 /* SceneAppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				534E460B24B85D17006C56B1 /* AppDelegate.h */,
+				534E460C24B85D17006C56B1 /* AppDelegate.m */,
+				534E460E24B85D17006C56B1 /* SceneDelegate.h */,
+				534E460F24B85D17006C56B1 /* SceneDelegate.m */,
+			);
+			path = SceneAppDelegate;
+			sourceTree = "<group>";
+		};
+		534E464124B85D3E006C56B1 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				534E461124B85D17006C56B1 /* ContactViewController.h */,
+				534E461224B85D17006C56B1 /* ContactViewController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		534E464224B8641E006C56B1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5377208E24BC3E8D00AF3195 /* TableView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		534E464624B86C18006C56B1 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				534E464724B86C4B006C56B1 /* ContactTableViewModel.h */,
+				534E464824B86C4B006C56B1 /* ContactTableViewModel.m */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		5377208A24BC3D5C00AF3195 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				533452ED24BA01000098396C /* MockContactTableViewModel.h */,
+				533452EE24BA01000098396C /* MockContactTableViewModel.m */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		5377208B24BC3D6E00AF3195 /* PresentationLayer */ = {
+			isa = PBXGroup;
+			children = (
+				5377209224BC709900AF3195 /* Models */,
+				534E464624B86C18006C56B1 /* ViewModels */,
+				534E464224B8641E006C56B1 /* Views */,
+				534E464124B85D3E006C56B1 /* ViewControllers */,
+			);
+			path = PresentationLayer;
+			sourceTree = "<group>";
+		};
+		5377208E24BC3E8D00AF3195 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				5377209A24BC8F3500AF3195 /* ContactTableView.h */,
+				5377209B24BC8F3500AF3195 /* ContactTableView.m */,
+				5377209024BC3F2D00AF3195 /* DataSource */,
+				5377208F24BC3E9E00AF3195 /* Cell */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		5377208F24BC3E9E00AF3195 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5377209324BC836D00AF3195 /* Button */,
+				533452F024BA029C0098396C /* ContactTableViewCell.h */,
+				533452F124BA029C0098396C /* ContactTableViewCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		5377209024BC3F2D00AF3195 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				5377209724BC8F2A00AF3195 /* ContactTableViewDataSource.h */,
+				5377209824BC8F2A00AF3195 /* ContactTableViewDataSource.m */,
+				5377209D24BC921000AF3195 /* ContactTableViewDataSourceProtocol.h */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		5377209224BC709900AF3195 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5377209324BC836D00AF3195 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				5377209424BC838700AF3195 /* CircleCheckBox.h */,
+				5377209524BC838700AF3195 /* CircleCheckBox.m */,
+			);
+			path = Button;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,9 +365,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				534E461B24B85D19006C56B1 /* LaunchScreen.storyboard in Resources */,
 				534E461824B85D19006C56B1 /* Assets.xcassets in Resources */,
-				534E461624B85D17006C56B1 /* Main.storyboard in Resources */,
+				534E464B24B87720006C56B1 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,10 +391,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				534E461324B85D17006C56B1 /* ViewController.m in Sources */,
+				533452EF24BA01000098396C /* MockContactTableViewModel.m in Sources */,
+				534E461324B85D17006C56B1 /* ContactViewController.m in Sources */,
+				5377209624BC838700AF3195 /* CircleCheckBox.m in Sources */,
 				534E460D24B85D17006C56B1 /* AppDelegate.m in Sources */,
+				5377209924BC8F2A00AF3195 /* ContactTableViewDataSource.m in Sources */,
 				534E461E24B85D19006C56B1 /* main.m in Sources */,
+				534E464924B86C4B006C56B1 /* ContactTableViewModel.m in Sources */,
 				534E461024B85D17006C56B1 /* SceneDelegate.m in Sources */,
+				5377209C24BC8F3500AF3195 /* ContactTableView.m in Sources */,
+				533452F224BA029C0098396C /* ContactTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,25 +434,6 @@
 			targetProxy = 534E462F24B85D1A006C56B1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		534E461424B85D17006C56B1 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				534E461524B85D17006C56B1 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		534E461924B85D19006C56B1 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				534E461A24B85D19006C56B1 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		534E463524B85D1A006C56B1 /* Debug */ = {
@@ -375,7 +486,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -427,7 +538,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

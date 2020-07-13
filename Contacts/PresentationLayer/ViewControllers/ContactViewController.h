@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Contacts/Contacts.h>
+#import "CircleCheckBox.h"
+#import "ContactTableView.h"
 
-@interface ViewController : UIViewController
-
+@interface ContactViewController : UIViewController
 
 @end
 
