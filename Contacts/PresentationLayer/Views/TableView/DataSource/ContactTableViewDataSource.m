@@ -19,11 +19,7 @@
 }
 
 - (NSArray<NSString *> *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-    NSMutableArray<NSString *> *res = [NSMutableArray new];
-    for(NSString *title in _viewModel.data.allKeys) {
-        [res addObject:title.lowercaseString];
-    }
-    return res;
+    return [[_viewModel data] allKeys];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -43,10 +39,6 @@
     ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     NSArray *titles = [_viewModel.data objectForKey:_viewModel.data.allKeys[indexPath.section]];
     [cell.label setText:titles[indexPath.row]];
-    UILabel *labelName = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
-    [labelName setText:cell.label.text];
-    [labelName setTextColor:[UIColor whiteColor]];
-    
     UIGraphicsBeginImageContextWithOptions(cell.label.bounds.size, false, 0.0);
     [cell.label.layer renderInContext:UIGraphicsGetCurrentContext()];
     [cell.image setImage:UIGraphicsGetImageFromCurrentImageContext()];
