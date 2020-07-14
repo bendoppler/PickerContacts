@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		533452EF24BA01000098396C /* MockContactTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 533452EE24BA01000098396C /* MockContactTableViewModel.m */; };
 		533452F224BA029C0098396C /* ContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 533452F124BA029C0098396C /* ContactTableViewCell.m */; };
 		534E460D24B85D17006C56B1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 534E460C24B85D17006C56B1 /* AppDelegate.m */; };
 		534E461024B85D17006C56B1 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 534E460F24B85D17006C56B1 /* SceneDelegate.m */; };
@@ -21,6 +20,10 @@
 		5377209624BC838700AF3195 /* CircleCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 5377209524BC838700AF3195 /* CircleCheckBox.m */; };
 		5377209924BC8F2A00AF3195 /* ContactTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5377209824BC8F2A00AF3195 /* ContactTableViewDataSource.m */; };
 		5377209C24BC8F3500AF3195 /* ContactTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5377209B24BC8F3500AF3195 /* ContactTableView.m */; };
+		53A8CBCE24BD9DA800763476 /* ContactService.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A8CBCD24BD9DA800763476 /* ContactService.m */; };
+		53A8CBD124BDA70700763476 /* ContactEmptyLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A8CBD024BDA70700763476 /* ContactEmptyLabel.m */; };
+		53A8CBD424BDABCC00763476 /* ContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A8CBD324BDABCC00763476 /* ContactModel.m */; };
+		53A8CBD724BDAF1B00763476 /* ContactModelList.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A8CBD624BDAF1B00763476 /* ContactModelList.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,8 +44,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		533452ED24BA01000098396C /* MockContactTableViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockContactTableViewModel.h; sourceTree = "<group>"; };
-		533452EE24BA01000098396C /* MockContactTableViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MockContactTableViewModel.m; sourceTree = "<group>"; };
 		533452F024BA029C0098396C /* ContactTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactTableViewCell.h; sourceTree = "<group>"; };
 		533452F124BA029C0098396C /* ContactTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewCell.m; sourceTree = "<group>"; };
 		534E460824B85D17006C56B1 /* Contacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Contacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +72,15 @@
 		5377209A24BC8F3500AF3195 /* ContactTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableView.h; sourceTree = "<group>"; };
 		5377209B24BC8F3500AF3195 /* ContactTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTableView.m; sourceTree = "<group>"; };
 		5377209D24BC921000AF3195 /* ContactTableViewDataSourceProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactTableViewDataSourceProtocol.h; sourceTree = "<group>"; };
+		53A8CBCC24BD9DA800763476 /* ContactService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactService.h; sourceTree = "<group>"; };
+		53A8CBCD24BD9DA800763476 /* ContactService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactService.m; sourceTree = "<group>"; };
+		53A8CBCF24BDA70700763476 /* ContactEmptyLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactEmptyLabel.h; sourceTree = "<group>"; };
+		53A8CBD024BDA70700763476 /* ContactEmptyLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactEmptyLabel.m; sourceTree = "<group>"; };
+		53A8CBD224BDABCC00763476 /* ContactModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactModel.h; sourceTree = "<group>"; };
+		53A8CBD324BDABCC00763476 /* ContactModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactModel.m; sourceTree = "<group>"; };
+		53A8CBD524BDAF1B00763476 /* ContactModelList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactModelList.h; sourceTree = "<group>"; };
+		53A8CBD624BDAF1B00763476 /* ContactModelList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactModelList.m; sourceTree = "<group>"; };
+		53A8CBDB24BDB86600763476 /* ContactTableViewModelProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactTableViewModelProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +139,7 @@
 		534E460A24B85D17006C56B1 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
+				53A8CBCB24BD9D7600763476 /* ServiceLayer */,
 				533452EC24BA00950098396C /* TestMocks */,
 				5377208B24BC3D6E00AF3195 /* PresentationLayer */,
 				534E464024B85D30006C56B1 /* SceneAppDelegate */,
@@ -182,6 +193,8 @@
 			isa = PBXGroup;
 			children = (
 				5377208E24BC3E8D00AF3195 /* TableView */,
+				53A8CBCF24BDA70700763476 /* ContactEmptyLabel.h */,
+				53A8CBD024BDA70700763476 /* ContactEmptyLabel.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -191,6 +204,7 @@
 			children = (
 				534E464724B86C4B006C56B1 /* ContactTableViewModel.h */,
 				534E464824B86C4B006C56B1 /* ContactTableViewModel.m */,
+				53A8CBDB24BDB86600763476 /* ContactTableViewModelProtocol.h */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -198,8 +212,6 @@
 		5377208A24BC3D5C00AF3195 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				533452ED24BA01000098396C /* MockContactTableViewModel.h */,
-				533452EE24BA01000098396C /* MockContactTableViewModel.m */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -249,6 +261,10 @@
 		5377209224BC709900AF3195 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				53A8CBD224BDABCC00763476 /* ContactModel.h */,
+				53A8CBD324BDABCC00763476 /* ContactModel.m */,
+				53A8CBD524BDAF1B00763476 /* ContactModelList.h */,
+				53A8CBD624BDAF1B00763476 /* ContactModelList.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -260,6 +276,15 @@
 				5377209524BC838700AF3195 /* CircleCheckBox.m */,
 			);
 			path = Button;
+			sourceTree = "<group>";
+		};
+		53A8CBCB24BD9D7600763476 /* ServiceLayer */ = {
+			isa = PBXGroup;
+			children = (
+				53A8CBCC24BD9DA800763476 /* ContactService.h */,
+				53A8CBCD24BD9DA800763476 /* ContactService.m */,
+			);
+			path = ServiceLayer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -391,14 +416,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				533452EF24BA01000098396C /* MockContactTableViewModel.m in Sources */,
+				53A8CBD724BDAF1B00763476 /* ContactModelList.m in Sources */,
+				53A8CBD124BDA70700763476 /* ContactEmptyLabel.m in Sources */,
 				534E461324B85D17006C56B1 /* ContactViewController.m in Sources */,
+				53A8CBCE24BD9DA800763476 /* ContactService.m in Sources */,
 				5377209624BC838700AF3195 /* CircleCheckBox.m in Sources */,
 				534E460D24B85D17006C56B1 /* AppDelegate.m in Sources */,
 				5377209924BC8F2A00AF3195 /* ContactTableViewDataSource.m in Sources */,
 				534E461E24B85D19006C56B1 /* main.m in Sources */,
 				534E464924B86C4B006C56B1 /* ContactTableViewModel.m in Sources */,
 				534E461024B85D17006C56B1 /* SceneDelegate.m in Sources */,
+				53A8CBD424BDABCC00763476 /* ContactModel.m in Sources */,
 				5377209C24BC8F3500AF3195 /* ContactTableView.m in Sources */,
 				533452F224BA029C0098396C /* ContactTableViewCell.m in Sources */,
 			);

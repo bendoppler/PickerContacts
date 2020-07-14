@@ -10,6 +10,9 @@
 #import <Contacts/Contacts.h>
 #import "CircleCheckBox.h"
 #import "ContactTableView.h"
+#import "ContactService.h"
+#import "ContactEmptyLabel.h"
+#import "ContactModelList.h"
 
 @interface ContactViewController : UIViewController
 

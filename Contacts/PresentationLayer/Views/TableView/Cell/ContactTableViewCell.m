@@ -15,7 +15,7 @@
     if (self) {
         _checkBox = [CircleCheckBox new];
         _image = [UIImageView new];
-        [_image setBackgroundColor:[UIColor blueColor]];
+        [_image setBackgroundColor:[UIColor clearColor]];
         _label = [UILabel new];
         [_label setTextAlignment:NSTextAlignmentLeft];
         [self addSubview:_checkBox];
@@ -27,9 +27,9 @@
 
 - (void)setConstraints {
     [_checkBox setFrame:CGRectMake(10, self.bounds.size.height/3, self.bounds.size.height/2, self.bounds.size.height/2)];
-    [_image setFrame:CGRectMake(self.bounds.size.height/2 + 20, 5, self.bounds.size.height*4/5, self.bounds.size.height*4/5)];
-    CGFloat width = self.bounds.size.width - (self.bounds.size.height*1.3 + 30);
-    [_label setFrame:CGRectMake(self.bounds.size.height*1.3 + 30, 0, width, self.bounds.size.height)];
+    [_image setFrame:CGRectMake(self.bounds.size.height/2 + 20, 5, self.bounds.size.height-5, self.bounds.size.height-5)];
+    CGFloat width = self.bounds.size.width - (self.bounds.size.height*1.5 + 25);
+    [_label setFrame:CGRectMake(self.bounds.size.height*1.5 + 25, 5, width, self.bounds.size.height-5)];
 }
 
 @end

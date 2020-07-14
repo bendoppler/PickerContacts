@@ -19,28 +19,37 @@
 }
 
 - (NSArray<NSString *> *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-    return [[_viewModel data] allKeys];
+    return [_viewModel indexTitles];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return [[_viewModel data] allKeys][section];
+    return [_viewModel indexTitles][section];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [[_viewModel data] count];
+    return [[_viewModel indexTitles] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSArray *indexes = [[_viewModel data] allKeys];
-    return [[[_viewModel data] objectForKey:indexes[section]] count];
+    return [_viewModel data][section].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    NSArray *titles = [_viewModel.data objectForKey:_viewModel.data.allKeys[indexPath.section]];
-    [cell.label setText:titles[indexPath.row]];
-    UIGraphicsBeginImageContextWithOptions(cell.label.bounds.size, false, 0.0);
-    [cell.label.layer renderInContext:UIGraphicsGetCurrentContext()];
+    [cell.label setText:[_viewModel data][indexPath.section][indexPath.row][1]];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+    [label setText:[_viewModel data][indexPath.section][indexPath.row][0]];
+    [label setTextAlignment:NSTextAlignmentCenter];
+    [label setTextColor:[UIColor whiteColor]];
+    [label setBackgroundColor:[_viewModel colorWithAbbreviatedName:[_viewModel data][indexPath.section][indexPath.row][0] andFullName:[_viewModel data][indexPath.section][indexPath.row][1]]];
+    [label.layer setShadowColor:[[UIColor blackColor] CGColor]];
+    [label.layer setShadowOffset:CGSizeMake(0.0f, 0.0f)];
+    [label.layer setShadowOpacity:0.5f];
+    [label.layer setShadowRadius:1.0f];
+    [label.layer setCornerRadius:label.frame.size.width/2];
+    [label setClipsToBounds:YES];
+    UIGraphicsBeginImageContextWithOptions(label.bounds.size, false, 0.0);
+    [label.layer renderInContext:UIGraphicsGetCurrentContext()];
     [cell.image setImage:UIGraphicsGetImageFromCurrentImageContext()];
     UIGraphicsEndImageContext();
     [cell setConstraints];

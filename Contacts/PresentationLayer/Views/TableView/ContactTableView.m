@@ -8,20 +8,12 @@
 
 #import "ContactTableView.h"
 
-@interface ContactTableView()
-
-@property ContactTableViewDataSource *dataSourceDelegate;
-
-@end
-
 @implementation ContactTableView
 
 - (instancetype)init {
     self = [super init];
     if(self) {
         [self registerClass:[ContactTableViewCell class] forCellReuseIdentifier:@"cell"];
-        _dataSourceDelegate = [[ContactTableViewDataSource alloc] initWithViewModel: [MockContactTableViewModel new]];
-        [self setDataSource:_dataSourceDelegate];
     }
     return self;
 }
@@ -33,6 +25,11 @@
     [[self leftAnchor] constraintEqualToAnchor:[[self superview] leftAnchor]].active = YES;
     [[self rightAnchor] constraintEqualToAnchor:[[self superview] rightAnchor]].active = YES;
     [[self bottomAnchor] constraintEqualToAnchor:[[self superview] bottomAnchor]].active = YES;
+}
+
+- (void)setDataSource:(id<UITableViewDataSource>)dataSource {
+    [super setDataSource:dataSource];
+    _dataSourceDelegate = dataSource;
 }
 
 @end

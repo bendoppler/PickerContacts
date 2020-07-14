@@ -7,14 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol ContactTableViewDataSourceProtocol <NSObject>
 
-@required
-- (NSDictionary <NSString *, NSArray<NSString *> *> *)data;
-
+@optional
+- (UIColor *)colorWithAbbreviatedName:(NSString *)abbreviatedName andFullName:(NSString *)fullName;
+- (NSArray<NSString *> *)indexTitles;
+- (NSArray<NSArray *> *)data;
 @end
 
 NS_ASSUME_NONNULL_END

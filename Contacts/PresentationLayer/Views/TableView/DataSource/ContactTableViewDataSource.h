@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MockContactTableViewModel.h"
 #import "ContactTableViewCell.h"
+#import "ContactTableViewDataSourceProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

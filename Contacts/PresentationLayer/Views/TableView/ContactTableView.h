@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "ContactTableViewDataSource.h"
 #import "ContactTableViewModel.h"
-#import "MockContactTableViewModel.h"
+#import "ContactTableViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ContactTableView : UITableView
+
+@property ContactTableViewDataSource *dataSourceDelegate;
 
 - (instancetype)init;
 - (void)setConstraints;
