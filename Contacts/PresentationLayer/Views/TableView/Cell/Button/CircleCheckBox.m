@@ -58,10 +58,9 @@
     [self setNeedsDisplay];
 }
 
-- (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
-    [self setIsChecked:!_isChecked];
+- (void)setChecked:(BOOL)isChecked {
+    _isChecked = isChecked;
     [self setNeedsDisplay];
-    return true;
 }
 
 @end

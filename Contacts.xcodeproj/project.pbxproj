@@ -24,6 +24,7 @@
 		53A8CBD124BDA70700763476 /* ContactEmptyLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A8CBD024BDA70700763476 /* ContactEmptyLabel.m */; };
 		53A8CBD424BDABCC00763476 /* ContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A8CBD324BDABCC00763476 /* ContactModel.m */; };
 		53A8CBD724BDAF1B00763476 /* ContactModelList.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A8CBD624BDAF1B00763476 /* ContactModelList.m */; };
+		53A8CBDF24BE067C00763476 /* ContactTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A8CBDE24BE067C00763476 /* ContactTableViewDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,8 @@
 		53A8CBD524BDAF1B00763476 /* ContactModelList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactModelList.h; sourceTree = "<group>"; };
 		53A8CBD624BDAF1B00763476 /* ContactModelList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactModelList.m; sourceTree = "<group>"; };
 		53A8CBDB24BDB86600763476 /* ContactTableViewModelProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactTableViewModelProtocol.h; sourceTree = "<group>"; };
+		53A8CBDD24BE067C00763476 /* ContactTableViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactTableViewDelegate.h; sourceTree = "<group>"; };
+		53A8CBDE24BE067C00763476 /* ContactTableViewDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +235,7 @@
 			children = (
 				5377209A24BC8F3500AF3195 /* ContactTableView.h */,
 				5377209B24BC8F3500AF3195 /* ContactTableView.m */,
+				53A8CBDC24BE062600763476 /* Delegate */,
 				5377209024BC3F2D00AF3195 /* DataSource */,
 				5377208F24BC3E9E00AF3195 /* Cell */,
 			);
@@ -285,6 +289,15 @@
 				53A8CBCD24BD9DA800763476 /* ContactService.m */,
 			);
 			path = ServiceLayer;
+			sourceTree = "<group>";
+		};
+		53A8CBDC24BE062600763476 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				53A8CBDD24BE067C00763476 /* ContactTableViewDelegate.h */,
+				53A8CBDE24BE067C00763476 /* ContactTableViewDelegate.m */,
+			);
+			path = Delegate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -417,6 +430,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				53A8CBD724BDAF1B00763476 /* ContactModelList.m in Sources */,
+				53A8CBDF24BE067C00763476 /* ContactTableViewDelegate.m in Sources */,
 				53A8CBD124BDA70700763476 /* ContactEmptyLabel.m in Sources */,
 				534E461324B85D17006C56B1 /* ContactViewController.m in Sources */,
 				53A8CBCE24BD9DA800763476 /* ContactService.m in Sources */,

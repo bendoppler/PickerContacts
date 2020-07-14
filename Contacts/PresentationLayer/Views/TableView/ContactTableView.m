@@ -8,12 +8,22 @@
 
 #import "ContactTableView.h"
 
+@interface ContactTableView()
+
+@property ContactTableViewDataSource *dataSourceDelegate;
+@property ContactTableViewDelegate *tableViewDelegate;
+
+@end
+
 @implementation ContactTableView
 
 - (instancetype)init {
     self = [super init];
     if(self) {
         [self registerClass:[ContactTableViewCell class] forCellReuseIdentifier:@"cell"];
+        [self setSeparatorColor:[UIColor clearColor]];
+        _tableViewDelegate = [[ContactTableViewDelegate alloc] init];
+        [self setDelegate:_tableViewDelegate];
     }
     return self;
 }
@@ -27,9 +37,44 @@
     [[self bottomAnchor] constraintEqualToAnchor:[[self superview] bottomAnchor]].active = YES;
 }
 
+- (void)deselectRowAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated {
+    [super deselectRowAtIndexPath:indexPath animated:animated];
+}
+
+
 - (void)setDataSource:(id<UITableViewDataSource>)dataSource {
     [super setDataSource:dataSource];
     _dataSourceDelegate = dataSource;
+}
+
+- (void)setDelegate:(id<UITableViewDelegate>)delegate {
+    [super setDelegate:delegate];
+}
+
+- (void)checkBoxTapped:(id)sender{
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self];
+    NSIndexPath *indexPath = [self indexPathForRowAtPoint:buttonPosition];
+    if(indexPath != nil) {
+        if([sender isChecked] == NO) {
+            [_tableViewDelegate tableView:self willSelectRowAtIndexPath:indexPath];
+            [self selectRowAtIndexPath:indexPath animated:false scrollPosition:UITableViewScrollPositionMiddle];
+            if([_tableViewDelegate respondsToSelector:@selector(tableView:didSelectRowAtIndexPath:)]) {
+                [_tableViewDelegate tableView:self didSelectRowAtIndexPath:indexPath];
+            }
+        }
+        else {
+            [_tableViewDelegate tableView:self willDeselectRowAtIndexPath:indexPath];
+            [self deselectRowAtIndexPath:indexPath animated:false];
+            if([_tableViewDelegate respondsToSelector:@selector(tableView:didSelectRowAtIndexPath:)]) {
+                [_tableViewDelegate tableView:self didDeselectRowAtIndexPath:indexPath];
+            }
+        }
+    }
+}
+
+- (void)selectRowAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated scrollPosition:(UITableViewScrollPosition)scrollPosition {
+    [super selectRowAtIndexPath:indexPath animated:animated scrollPosition:scrollPosition];
+    
 }
 
 @end

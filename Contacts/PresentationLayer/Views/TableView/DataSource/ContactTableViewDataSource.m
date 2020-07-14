@@ -52,8 +52,11 @@
     [label.layer renderInContext:UIGraphicsGetCurrentContext()];
     [cell.image setImage:UIGraphicsGetImageFromCurrentImageContext()];
     UIGraphicsEndImageContext();
+    [cell.checkBox addTarget:tableView action:@selector(checkBoxTapped:) forControlEvents:UIControlEventTouchUpInside];
     [cell setConstraints];
     return cell;
 }
+
+- (void)checkBoxTapped:(id)sender{}
 
 @end

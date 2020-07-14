@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property UIColor *boxBorderColor;
 @property BOOL isChecked;
 
+- (void)setChecked:(BOOL)isChecked;
+
 @end
 
 NS_ASSUME_NONNULL_END

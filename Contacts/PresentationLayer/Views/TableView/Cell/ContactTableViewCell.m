@@ -21,6 +21,9 @@
         [self addSubview:_checkBox];
         [self addSubview:_image];
         [self addSubview:_label];
+        UIView *bgColorView = [[UIView alloc] init];
+        bgColorView.backgroundColor = [UIColor colorWithRed:0.678 green:0.847 blue:0.902 alpha:0.5];
+        [self setSelectedBackgroundView:bgColorView];
     }
     return self;
 }
@@ -31,5 +34,6 @@
     CGFloat width = self.bounds.size.width - (self.bounds.size.height*1.5 + 25);
     [_label setFrame:CGRectMake(self.bounds.size.height*1.5 + 25, 5, width, self.bounds.size.height-5)];
 }
+
 
 @end
