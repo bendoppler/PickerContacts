@@ -21,10 +21,12 @@
 		5377209924BC8F2A00AF3195 /* ContactTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5377209824BC8F2A00AF3195 /* ContactTableViewDataSource.m */; };
 		5377209C24BC8F3500AF3195 /* ContactTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5377209B24BC8F3500AF3195 /* ContactTableView.m */; };
 		53A8CBCE24BD9DA800763476 /* ContactService.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A8CBCD24BD9DA800763476 /* ContactService.m */; };
-		53A8CBD124BDA70700763476 /* ContactEmptyLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A8CBD024BDA70700763476 /* ContactEmptyLabel.m */; };
+		53A8CBD124BDA70700763476 /* ContactEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A8CBD024BDA70700763476 /* ContactEmptyView.m */; };
 		53A8CBD424BDABCC00763476 /* ContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A8CBD324BDABCC00763476 /* ContactModel.m */; };
 		53A8CBD724BDAF1B00763476 /* ContactModelList.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A8CBD624BDAF1B00763476 /* ContactModelList.m */; };
 		53A8CBDF24BE067C00763476 /* ContactTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A8CBDE24BE067C00763476 /* ContactTableViewDelegate.m */; };
+		53CB17DC24BFF3CE002B2488 /* ContactSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CB17DB24BFF3CE002B2488 /* ContactSearchBar.m */; };
+		53CB17DF24BFF5C3002B2488 /* ContactStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CB17DE24BFF5C3002B2488 /* ContactStackView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,8 +77,8 @@
 		5377209D24BC921000AF3195 /* ContactTableViewDataSourceProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactTableViewDataSourceProtocol.h; sourceTree = "<group>"; };
 		53A8CBCC24BD9DA800763476 /* ContactService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactService.h; sourceTree = "<group>"; };
 		53A8CBCD24BD9DA800763476 /* ContactService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactService.m; sourceTree = "<group>"; };
-		53A8CBCF24BDA70700763476 /* ContactEmptyLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactEmptyLabel.h; sourceTree = "<group>"; };
-		53A8CBD024BDA70700763476 /* ContactEmptyLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactEmptyLabel.m; sourceTree = "<group>"; };
+		53A8CBCF24BDA70700763476 /* ContactEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactEmptyView.h; sourceTree = "<group>"; };
+		53A8CBD024BDA70700763476 /* ContactEmptyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactEmptyView.m; sourceTree = "<group>"; };
 		53A8CBD224BDABCC00763476 /* ContactModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactModel.h; sourceTree = "<group>"; };
 		53A8CBD324BDABCC00763476 /* ContactModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactModel.m; sourceTree = "<group>"; };
 		53A8CBD524BDAF1B00763476 /* ContactModelList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactModelList.h; sourceTree = "<group>"; };
@@ -84,6 +86,11 @@
 		53A8CBDB24BDB86600763476 /* ContactTableViewModelProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactTableViewModelProtocol.h; sourceTree = "<group>"; };
 		53A8CBDD24BE067C00763476 /* ContactTableViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactTableViewDelegate.h; sourceTree = "<group>"; };
 		53A8CBDE24BE067C00763476 /* ContactTableViewDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewDelegate.m; sourceTree = "<group>"; };
+		53CB17DA24BFF3CE002B2488 /* ContactSearchBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactSearchBar.h; sourceTree = "<group>"; };
+		53CB17DB24BFF3CE002B2488 /* ContactSearchBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactSearchBar.m; sourceTree = "<group>"; };
+		53CB17DD24BFF5C3002B2488 /* ContactStackView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactStackView.h; sourceTree = "<group>"; };
+		53CB17DE24BFF5C3002B2488 /* ContactStackView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactStackView.m; sourceTree = "<group>"; };
+		53CB17E324BFF85D002B2488 /* ContactStackViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactStackViewProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,8 +203,9 @@
 			isa = PBXGroup;
 			children = (
 				5377208E24BC3E8D00AF3195 /* TableView */,
-				53A8CBCF24BDA70700763476 /* ContactEmptyLabel.h */,
-				53A8CBD024BDA70700763476 /* ContactEmptyLabel.m */,
+				53CB17E224BFF843002B2488 /* EmptyView */,
+				53CB17E124BFF837002B2488 /* SearchBar */,
+				53CB17E024BFF825002B2488 /* StackView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -298,6 +306,34 @@
 				53A8CBDE24BE067C00763476 /* ContactTableViewDelegate.m */,
 			);
 			path = Delegate;
+			sourceTree = "<group>";
+		};
+		53CB17E024BFF825002B2488 /* StackView */ = {
+			isa = PBXGroup;
+			children = (
+				53CB17DD24BFF5C3002B2488 /* ContactStackView.h */,
+				53CB17DE24BFF5C3002B2488 /* ContactStackView.m */,
+				53CB17E324BFF85D002B2488 /* ContactStackViewProtocol.h */,
+			);
+			path = StackView;
+			sourceTree = "<group>";
+		};
+		53CB17E124BFF837002B2488 /* SearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				53CB17DA24BFF3CE002B2488 /* ContactSearchBar.h */,
+				53CB17DB24BFF3CE002B2488 /* ContactSearchBar.m */,
+			);
+			path = SearchBar;
+			sourceTree = "<group>";
+		};
+		53CB17E224BFF843002B2488 /* EmptyView */ = {
+			isa = PBXGroup;
+			children = (
+				53A8CBCF24BDA70700763476 /* ContactEmptyView.h */,
+				53A8CBD024BDA70700763476 /* ContactEmptyView.m */,
+			);
+			path = EmptyView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -430,14 +466,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				53A8CBD724BDAF1B00763476 /* ContactModelList.m in Sources */,
+				53CB17DC24BFF3CE002B2488 /* ContactSearchBar.m in Sources */,
 				53A8CBDF24BE067C00763476 /* ContactTableViewDelegate.m in Sources */,
-				53A8CBD124BDA70700763476 /* ContactEmptyLabel.m in Sources */,
+				53A8CBD124BDA70700763476 /* ContactEmptyView.m in Sources */,
 				534E461324B85D17006C56B1 /* ContactViewController.m in Sources */,
 				53A8CBCE24BD9DA800763476 /* ContactService.m in Sources */,
 				5377209624BC838700AF3195 /* CircleCheckBox.m in Sources */,
 				534E460D24B85D17006C56B1 /* AppDelegate.m in Sources */,
 				5377209924BC8F2A00AF3195 /* ContactTableViewDataSource.m in Sources */,
 				534E461E24B85D19006C56B1 /* main.m in Sources */,
+				53CB17DF24BFF5C3002B2488 /* ContactStackView.m in Sources */,
 				534E464924B86C4B006C56B1 /* ContactTableViewModel.m in Sources */,
 				534E461024B85D17006C56B1 /* SceneDelegate.m in Sources */,
 				53A8CBD424BDABCC00763476 /* ContactModel.m in Sources */,

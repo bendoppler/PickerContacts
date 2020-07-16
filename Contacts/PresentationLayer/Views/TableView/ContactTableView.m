@@ -12,6 +12,8 @@
 
 @property ContactTableViewDataSource *dataSourceDelegate;
 @property ContactTableViewDelegate *tableViewDelegate;
+@property NSLayoutConstraint *widthConstraint;
+@property NSLayoutConstraint *heightConstraint;
 
 @end
 
@@ -30,11 +32,10 @@
 
 - (void)setConstraints {
     [super updateConstraints];
-    [self setTranslatesAutoresizingMaskIntoConstraints: NO];
-    [[self topAnchor] constraintEqualToAnchor: [[self superview] topAnchor]].active = YES;
-    [[self leftAnchor] constraintEqualToAnchor:[[self superview] leftAnchor]].active = YES;
-    [[self rightAnchor] constraintEqualToAnchor:[[self superview] rightAnchor]].active = YES;
-    [[self bottomAnchor] constraintEqualToAnchor:[[self superview] bottomAnchor]].active = YES;
+    if(self.translatesAutoresizingMaskIntoConstraints == YES) {
+        [self setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [self.heightAnchor constraintEqualToConstant:self.superview.bounds.size.height*0.9].active = YES;
+    }
 }
 
 - (void)deselectRowAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated {
@@ -74,7 +75,6 @@
 
 - (void)selectRowAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated scrollPosition:(UITableViewScrollPosition)scrollPosition {
     [super selectRowAtIndexPath:indexPath animated:animated scrollPosition:scrollPosition];
-    
 }
 
 @end

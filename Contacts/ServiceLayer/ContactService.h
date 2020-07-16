@@ -8,14 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <Contacts/Contacts.h>
+#import "ContactStackViewProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ContactService : NSObject
-
-- (CNAuthorizationStatus)status;
-- (CNContactStore *)sharedInstance;
-- (NSArray<CNContact *> *)contacts;
+@interface ContactService : NSObject<ContactStackViewProtocol>
 
 @end
 
