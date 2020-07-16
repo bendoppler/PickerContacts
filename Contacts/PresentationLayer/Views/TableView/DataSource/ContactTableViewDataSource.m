@@ -37,7 +37,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     [cell.label setText:[_viewModel data][indexPath.section][indexPath.row][1]];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.bounds.size.height-5, cell.bounds.size.height-5)];
     [label setText:[_viewModel data][indexPath.section][indexPath.row][0]];
     [label setTextAlignment:NSTextAlignmentCenter];
     [label setTextColor:[UIColor whiteColor]];

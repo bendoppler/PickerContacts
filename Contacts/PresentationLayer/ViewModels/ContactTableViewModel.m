@@ -32,7 +32,7 @@
                 if(res[key] == nil) {
                     res[key] = [[NSMutableArray alloc] init];
                 }
-                NSString *fullName = [self generateFullNameWithFirstName:contact.firstName middleName:contact.middleName lastName:contact.lastName nameSuffix:contact.nameSuffix adnPhoneNumber:contact.phoneNumberArray[0]];
+                NSString *fullName = [self generateFullNameWithFirstName:contact.firstName middleName:contact.middleName lastName:contact.lastName nameSuffix:contact.nameSuffix andPhoneNumbers:contact.phoneNumberArray];
                 [res[key] addObject:@[abbreviatedName, fullName]];
             }
             NSArray *keys = [res allKeys];
@@ -72,9 +72,10 @@
 }
 
 - (NSString *)generateFullNameWithFirstName:(NSString *)firstName middleName:(NSString *)middleName
-                                   lastName:(NSString *)lastName nameSuffix:(NSString *)nameSuffix adnPhoneNumber:(NSString *)phoneNumber {
-    if(firstName == nil && middleName == nil && lastName == nil && nameSuffix == nil) {
-        return phoneNumber;
+                                   lastName:(NSString *)lastName nameSuffix:(NSString *)nameSuffix andPhoneNumbers:(NSArray *)phoneNumbers {
+    if(![self validText:firstName] && ![self validText:middleName] && ![self validText:lastName] &&
+       ![self validText:nameSuffix]) {
+        return phoneNumbers.count == 0 ? nil : phoneNumbers[0];
     }
     NSMutableString *res = [[NSMutableString alloc] init];
     if([self validText:firstName]) {
@@ -119,6 +120,38 @@
 
 - (NSArray<NSString *> *)indexTitles {
     return _keys;
+}
+
+- (void)updateTableViewWithModel:(id<ContactTableViewModelProtocol>)model {
+    if(!_model) {
+        _model = model;
+    }
+    if(!_data) {
+        _data = [[NSMutableArray alloc] init];
+    }
+    if(!_keys) {
+        _keys = [[NSMutableArray alloc] init];
+    }
+    if(_model) {
+        NSArray<ContactModel *> *contacts = [_model contactList];
+        NSMutableDictionary<NSString *,NSMutableArray<NSArray *> *> *res = [[NSMutableDictionary alloc] init];
+        for(ContactModel *contact in contacts) {
+            NSString *abbreviatedName = [self generateAbbreviatedNameWithFirstName:contact.firstName andLastName:contact.lastName];
+            NSString* key = [self convertToKeyFromAbbreviatedName:abbreviatedName];
+            if(res[key] == nil) {
+                res[key] = [[NSMutableArray alloc] init];
+            }
+            NSString *fullName = [self generateFullNameWithFirstName:contact.firstName middleName:contact.middleName lastName:contact.lastName nameSuffix:contact.nameSuffix andPhoneNumbers:contact.phoneNumberArray];
+            [res[key] addObject:@[abbreviatedName, fullName]];
+        }
+        NSArray *keys = [res allKeys];
+        _keys = [keys sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+            return [obj1 compare:obj2];
+        }];
+        for(NSString* key in _keys) {
+            [_data addObject:res[key]];
+        }
+    }
 }
 
 

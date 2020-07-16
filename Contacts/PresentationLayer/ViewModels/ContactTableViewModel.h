@@ -9,13 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "ContactTableViewDataSource.h"
 #import "ContactTableViewModelProtocol.h"
+#import "ContactModelList.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ContactTableViewModel : NSObject<ContactTableViewDataSourceProtocol>
 
 - (instancetype)initWithTableViewModel:(id<ContactTableViewModelProtocol>) model;
-
+- (void)updateTableViewWithModel:(id<ContactTableViewModelProtocol>)model;
 
 @end
 

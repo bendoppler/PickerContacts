@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol ContactStackViewProtocol <NSObject>
 
+@optional
 - (CNContactStore *)sharedInstance;
 - (NSArray<CNContact *> *)contacts;
 - (CNAuthorizationStatus)status;

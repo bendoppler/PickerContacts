@@ -16,6 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithCNContacts:(NSArray<CNContact *> *)contacts;
 
++ (instancetype)sharedInstance;
+
+- (void)updateWithCNContacts:(NSArray<CNContact *> *)contacts;
+
 @end
 
 NS_ASSUME_NONNULL_END

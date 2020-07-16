@@ -11,6 +11,7 @@
 @interface ContactStackView()
 
 @property id<ContactStackViewProtocol> service;
+@property ContactTableViewModel *viewModel;
 
 @end
 
@@ -24,6 +25,7 @@
         _tableView = [[ContactTableView alloc] init];
         _searchBar = [[ContactSearchBar alloc] init];
         _emptyView = [[ContactEmptyView alloc] init];
+        _viewModel = [[ContactTableViewModel alloc] init];
     }
     return self;
 }
@@ -47,9 +49,7 @@
                         }else if(granted && !error) {
                             [strongSelf->_emptyView setHidden:YES];
                             [strongSelf->_tableView setHidden:NO];
-                            ContactTableViewModel *viewModel = [[ContactTableViewModel alloc] initWithTableViewModel: [[ContactModelList alloc] initWithCNContacts:[strongSelf->_service contacts]]];
-                            [strongSelf->_tableView setDataSource:[[ContactTableViewDataSource alloc] initWithViewModel: viewModel]];
-                            [strongSelf->_tableView reloadData];
+                            [strongSelf updateContacts];
                         }
                     }
                 });
@@ -61,9 +61,7 @@
     }else if ([_service status] == CNAuthorizationStatusAuthorized) {
         [_emptyView setHidden:YES];
         [_tableView setHidden:NO];
-        ContactTableViewModel *viewModel = [[ContactTableViewModel alloc] initWithTableViewModel: [[ContactModelList alloc] initWithCNContacts:[_service contacts]]];
-        [_tableView setDataSource:[[ContactTableViewDataSource alloc] initWithViewModel: viewModel]];
-        [_tableView reloadData];
+        [self updateContacts];
     }
 }
 
@@ -100,6 +98,14 @@
     [_tableView setHidden:NO];
     [_emptyView setHidden:YES];
     [self askPermission];
+}
+
+- (void)updateContacts {
+    NSArray<CNContact *> *contacts = [_service contacts];
+    [[ContactModelList sharedInstance] updateWithCNContacts:contacts];
+    [_viewModel updateTableViewWithModel:[ContactModelList sharedInstance]];
+    [_tableView setDataSource:[[ContactTableViewDataSource alloc] initWithViewModel: _viewModel]];
+    [_tableView reloadData];
 }
 
 

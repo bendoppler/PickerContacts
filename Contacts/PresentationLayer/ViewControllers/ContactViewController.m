@@ -42,12 +42,17 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupData) name:CNContactStoreDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateContacts) name:CNContactStoreDidChangeNotification object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name: CNContactStoreDidChangeNotification object: nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name: CNContactStoreDidChangeNotification object: nil];
+}
+
+//MARK: Contacts Notification
+- (void)updateContacts {
+    [stackView updateContacts];
 }
 
 @end
