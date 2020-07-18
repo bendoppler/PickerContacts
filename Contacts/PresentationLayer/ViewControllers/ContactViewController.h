@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Contacts/Contacts.h>
 #import "ContactStackView.h"
+#import "ContactNavigationBarItemStackView.h"
 
 
 @interface ContactViewController : UIViewController

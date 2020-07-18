@@ -32,7 +32,6 @@
 }
 
 - (void)setConstraints {
-    [super updateConstraints];
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.heightAnchor constraintEqualToConstant:self.superview.bounds.size.height*0.9].active = YES;
     [_label setTranslatesAutoresizingMaskIntoConstraints:NO];

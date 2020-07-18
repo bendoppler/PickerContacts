@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ContactTableViewCell.h"
 #import "ContactTableViewDataSourceProtocol.h"
+#import "ContactModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

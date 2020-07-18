@@ -14,10 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ContactModelList : NSObject<ContactTableViewModelProtocol>
 
-- (instancetype)initWithCNContacts:(NSArray<CNContact *> *)contacts;
-
 + (instancetype)sharedInstance;
-
 - (void)updateWithCNContacts:(NSArray<CNContact *> *)contacts;
 
 @end

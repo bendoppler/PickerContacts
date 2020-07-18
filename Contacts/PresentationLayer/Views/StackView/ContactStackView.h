@@ -13,6 +13,7 @@
 #import "ContactTableViewModel.h"
 #import "ContactModelList.h"
 #import "ContactService.h"
+#import "ContactPickerCollectionView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property ContactTableView *tableView;
 @property ContactSearchBar *searchBar;
 @property ContactEmptyView *emptyView;
+@property ContactPickerCollectionView *collectionView;
 
 - (void)askPermission;
 - (instancetype)initWithService:(id<ContactStackViewProtocol>)service;

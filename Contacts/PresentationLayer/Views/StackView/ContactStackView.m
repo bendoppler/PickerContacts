@@ -26,6 +26,7 @@
         _searchBar = [[ContactSearchBar alloc] init];
         _emptyView = [[ContactEmptyView alloc] init];
         _viewModel = [[ContactTableViewModel alloc] init];
+        [_tableView.tableViewDelegate setDelegate:_collectionView.ds.viewModel];
     }
     return self;
 }
@@ -84,17 +85,25 @@
 }
 
 - (void)setConstraintWithHeight:(CGFloat)height andOriginY:(CGFloat)y {
-    [self addArrangedSubview:_searchBar];
-    [self addArrangedSubview:_tableView];
-    [self addArrangedSubview:_emptyView];
     [self setFrame:CGRectMake(0, y, self.superview.bounds.size.width, height)];
     [self setAxis:UILayoutConstraintAxisVertical];
     [self setAlignment:UIStackViewAlignmentFill];
     [self setDistribution:UIStackViewDistributionFill];
     [self setSpacing:0];
+    if(!_collectionView) {
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+        _collectionView = [[ContactPickerCollectionView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, height/6) collectionViewLayout:flowLayout];
+    }
+    [self addArrangedSubview:_collectionView];
+    [self addArrangedSubview:_searchBar];
+    [self addArrangedSubview:_tableView];
+    [self addArrangedSubview:_emptyView];
+    [_collectionView setConstraints];
     [_searchBar setConstraints];
     [_tableView setConstraints];
     [_emptyView setConstraints];
+    [_collectionView setHidden:YES];
     [_tableView setHidden:NO];
     [_emptyView setHidden:YES];
     [self askPermission];

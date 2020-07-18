@@ -15,6 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ContactTableView : UITableView
 
+@property ContactTableViewDelegate *tableViewDelegate;
+@property ContactTableViewDataSource *dataSourceDelegate;
+
 - (instancetype)init;
 - (void)setConstraints;
 

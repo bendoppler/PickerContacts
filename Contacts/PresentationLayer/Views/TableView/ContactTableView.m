@@ -10,8 +10,6 @@
 
 @interface ContactTableView()
 
-@property ContactTableViewDataSource *dataSourceDelegate;
-@property ContactTableViewDelegate *tableViewDelegate;
 @property NSLayoutConstraint *widthConstraint;
 @property NSLayoutConstraint *heightConstraint;
 
@@ -31,7 +29,6 @@
 }
 
 - (void)setConstraints {
-    [super updateConstraints];
     if(self.translatesAutoresizingMaskIntoConstraints == YES) {
         [self setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.heightAnchor constraintEqualToConstant:self.superview.bounds.size.height*0.9].active = YES;

@@ -8,6 +8,7 @@
 
 #import "ContactTableViewDataSource.h"
 
+
 @implementation ContactTableViewDataSource
 
 - (instancetype)initWithViewModel:(id<ContactTableViewDataSourceProtocol>)viewModel {
@@ -36,12 +37,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    [cell.label setText:[_viewModel data][indexPath.section][indexPath.row][1]];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.bounds.size.height-5, cell.bounds.size.height-5)];
-    [label setText:[_viewModel data][indexPath.section][indexPath.row][0]];
+    ContactModel *model = [_viewModel data][indexPath.section][indexPath.row];
+    [cell.viewModel updateWithModel:model];
+    [cell.label setText:[cell.viewModel getFullName]];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.bounds.size.height-10, cell.bounds.size.height-10)];
+    [label setText:[cell.viewModel getAbbreviatedName]];
     [label setTextAlignment:NSTextAlignmentCenter];
     [label setTextColor:[UIColor whiteColor]];
-    [label setBackgroundColor:[_viewModel colorWithAbbreviatedName:[_viewModel data][indexPath.section][indexPath.row][0] andFullName:[_viewModel data][indexPath.section][indexPath.row][1]]];
+    [label setBackgroundColor:[cell.viewModel getColor]];
     [label.layer setShadowColor:[[UIColor blackColor] CGColor]];
     [label.layer setShadowOffset:CGSizeMake(0.0f, 0.0f)];
     [label.layer setShadowOpacity:0.5f];

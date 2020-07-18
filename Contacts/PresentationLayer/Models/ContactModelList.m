@@ -12,20 +12,20 @@
 
 @property NSMutableSet *ids;
 @property NSMutableArray<ContactModel *> *models;
+@property NSMutableDictionary<NSString *, ContactModel *> *modelsDict;
 
 @end
 
 @implementation ContactModelList
 
-- (instancetype)initWithCNContacts:(NSArray<CNContact *> *)contacts {
+
+- (instancetype)init
+{
     self = [super init];
     if (self) {
         _ids = [NSMutableSet new];
         _models = [NSMutableArray new];
-        for(CNContact *contact in contacts) {
-            [_ids addObject:contact.identifier];
-            [_models addObject:[[ContactModel alloc] initWithCNContact:contact]];
-        }
+        _modelsDict = [NSMutableDictionary new];
     }
     return self;
 }
@@ -44,18 +44,13 @@
 }
 
 - (void)updateWithCNContacts:(NSArray<CNContact *> *)contacts {
-    if([[ContactModelList sharedInstance] models] == nil) {
-        ContactModelList.sharedInstance.models = [NSMutableArray new];
-    }
-    if([[ContactModelList sharedInstance] ids] == nil) {
-        ContactModelList.sharedInstance.ids = [NSMutableSet new];
-    }
     for(CNContact *contact in contacts) {
         if([_ids containsObject:contact.identifier] == NO) {
             [_ids addObject:contact.identifier];
             [_models addObject:[[ContactModel alloc] initWithCNContact:contact]];
         }
     }
+    NSLog(@"Ok");
 }
 
 @end

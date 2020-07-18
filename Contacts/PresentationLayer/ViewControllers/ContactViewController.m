@@ -11,7 +11,11 @@
 @interface ContactViewController () {
     ContactStackView *stackView;
     ContactService *contactService;
+    UILabel *titleLabel;
     BOOL isInPickingMode;
+    NSNumber *pickCount;
+    ContactNavigationBarItemStackView *navigationBarItemView;
+    UIBarButtonItem *sendMessageBarButtonItem;
 }
 
 @end
@@ -21,7 +25,19 @@
 //MARK: Init views and services
 - (void)setupViews {
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    [self.navigationItem setTitle:@"Picker Contact"];
+    if(!navigationBarItemView) {
+        navigationBarItemView = [[ContactNavigationBarItemStackView alloc] initWithWidth:self.view.bounds.size.width andHeight:self.navigationController.navigationBar.frame.size.height];
+        [self.navigationItem setTitleView:navigationBarItemView];
+    }
+    if(!sendMessageBarButtonItem) {
+        sendMessageBarButtonItem = [[UIBarButtonItem alloc]
+                                    initWithTitle: @"Send SMS"
+                                    style:UIBarButtonItemStyleDone
+                                    target:self
+                                    action:@selector(sendMessage)];
+        [self.navigationItem setRightBarButtonItem:sendMessageBarButtonItem];
+        [sendMessageBarButtonItem setEnabled:NO];
+    }
     if(!contactService) {
         contactService = [[ContactService alloc] init];
     }
@@ -53,6 +69,11 @@
 //MARK: Contacts Notification
 - (void)updateContacts {
     [stackView updateContacts];
+}
+
+//MARK: Send message
+- (void)sendMessage {
+    NSLog(@"Send Message");
 }
 
 @end

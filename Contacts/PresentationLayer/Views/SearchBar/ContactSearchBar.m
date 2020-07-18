@@ -28,7 +28,6 @@
 }
 
 - (void)setConstraints {
-    [super updateConstraints];
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.topAnchor constraintEqualToAnchor:self.superview.topAnchor].active = YES;
     [self.heightAnchor constraintEqualToConstant:self.superview.bounds.size.height*0.1].active = YES;
