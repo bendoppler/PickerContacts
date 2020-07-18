@@ -50,7 +50,6 @@
             [_models addObject:[[ContactModel alloc] initWithCNContact:contact]];
         }
     }
-    NSLog(@"Ok");
 }
 
 @end

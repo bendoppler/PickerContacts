@@ -100,6 +100,7 @@
 		53A8CBDE24BE067C00763476 /* ContactTableViewDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewDelegate.m; sourceTree = "<group>"; };
 		53C6956524C2A48B00D6217E /* ContactTableViewCellViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactTableViewCellViewModel.h; sourceTree = "<group>"; };
 		53C6956624C2A48B00D6217E /* ContactTableViewCellViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewCellViewModel.m; sourceTree = "<group>"; };
+		53C6956B24C2FB1000D6217E /* SharedData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SharedData.h; sourceTree = "<group>"; };
 		53CADCAC24C156B8007A9BA9 /* ContactPickerCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactPickerCollectionViewCell.h; sourceTree = "<group>"; };
 		53CADCAD24C156B8007A9BA9 /* ContactPickerCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactPickerCollectionViewCell.m; sourceTree = "<group>"; };
 		53CADCB024C1573F007A9BA9 /* ContactPickerCollectionViewDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactPickerCollectionViewDataSource.h; sourceTree = "<group>"; };
@@ -196,6 +197,7 @@
 				534E464A24B87720006C56B1 /* LaunchScreen.storyboard */,
 				534E461C24B85D19006C56B1 /* Info.plist */,
 				534E461D24B85D19006C56B1 /* main.m */,
+				53C6956B24C2FB1000D6217E /* SharedData.h */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";

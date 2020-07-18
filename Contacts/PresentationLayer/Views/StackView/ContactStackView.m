@@ -26,7 +26,6 @@
         _searchBar = [[ContactSearchBar alloc] init];
         _emptyView = [[ContactEmptyView alloc] init];
         _viewModel = [[ContactTableViewModel alloc] init];
-        [_tableView.tableViewDelegate setDelegate:_collectionView.ds.viewModel];
     }
     return self;
 }
@@ -94,6 +93,8 @@
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         _collectionView = [[ContactPickerCollectionView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, height/6) collectionViewLayout:flowLayout];
+        [_tableView.tableViewDelegate setDelegate:_collectionView.ds.viewModel];
+        [_collectionView.ds.viewModel addObserver:self forKeyPath:@"state" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:nil];
     }
     [self addArrangedSubview:_collectionView];
     [self addArrangedSubview:_searchBar];
@@ -115,6 +116,19 @@
     [_viewModel updateTableViewWithModel:[ContactModelList sharedInstance]];
     [_tableView setDataSource:[[ContactTableViewDataSource alloc] initWithViewModel: _viewModel]];
     [_tableView reloadData];
+}
+
+//MARK: Collection view state observer
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if([keyPath isEqualToString:@"state"]) {
+        NSLog(@"Set collection view layout based on state");
+    }
+}
+
+- (void)dealloc
+{
+    [_collectionView.ds.viewModel removeObserver:self forKeyPath:@"state"];
 }
 
 

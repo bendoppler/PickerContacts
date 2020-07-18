@@ -8,6 +8,7 @@
 
 #import "ContactViewController.h"
 
+
 @interface ContactViewController () {
     ContactStackView *stackView;
     ContactService *contactService;
@@ -59,16 +60,22 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateContacts) name:CNContactStoreDidChangeNotification object:nil];
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateSendSMSButton:) name:@"com.piendop.contactPickerCollectionViewState" object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name: CNContactStoreDidChangeNotification object: nil];
+    [NSNotificationCenter.defaultCenter removeObserver:self name:@"com.piendop.contactPickerCollectionViewState" object:nil];
 }
 
 //MARK: Contacts Notification
 - (void)updateContacts {
     [stackView updateContacts];
+}
+
+- (void)updateSendSMSButton:(NSNotification *)notification {
+    NSLog(@"Let update sms button");
 }
 
 //MARK: Send message

@@ -27,8 +27,18 @@
         [_pickedCountLabel setTextColor:[UIColor grayColor]];
         [_pickedCountLabel setFont:[UIFont systemFontOfSize:16]];
         [_pickedCountLabel setText:@"Picked: 0"];
+        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updatePickedContactLabel:) name:@"com.piendop.contactPickerCollectionViewState" object:nil];
     }
     return self;
+}
+
+- (void)updatePickedContactLabel:(NSNotification *)notification {
+    NSLog(@"Let update picked count label");
+}
+
+- (void)dealloc
+{
+    [NSNotificationCenter.defaultCenter removeObserver:self name:@"com.piendop.contactPickerCollectionViewState" object:nil];
 }
 
 @end
