@@ -10,10 +10,16 @@
 
 @implementation ContactPickerCollectionViewCell
 
-- (instancetype)initWithCoder:(NSCoder *)coder {
-    self = [super initWithCoder:coder];
-    if(self) {
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self setBackgroundColor:[UIColor clearColor]];
         _imageView = [[UIImageView alloc] init];
+        [self addSubview:_imageView];
+        [_imageView setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [_imageView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor].active = YES;
+        [_imageView.centerYAnchor constraintEqualToAnchor:self.centerYAnchor].active = YES;
     }
     return self;
 }

@@ -33,7 +33,7 @@
 
 - (void)setConstraints {
     [_checkBox setFrame:CGRectMake(10, self.bounds.size.height/3, self.bounds.size.height/2, self.bounds.size.height/2)];
-    [_image setFrame:CGRectMake(self.bounds.size.height/2 + 20, 5, self.bounds.size.height-10, self.bounds.size.height-10)];
+    [_image setFrame:CGRectMake(self.bounds.size.height/2 + 20, 5, self.bounds.size.height - 10, self.bounds.size.height - 10)];
     CGFloat width = self.bounds.size.width - (self.bounds.size.height*1.5 + 25);
     [_label setFrame:CGRectMake(self.bounds.size.height*1.5 + 25, 5, width, self.bounds.size.height-5)];
 }

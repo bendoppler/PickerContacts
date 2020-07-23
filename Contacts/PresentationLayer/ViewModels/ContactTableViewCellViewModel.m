@@ -96,7 +96,7 @@
 }
 
 - (NSString *)getIdentifier {
-    if(!_model) {
+    if(_model) {
         return _model.identifier;
     }
     return nil;

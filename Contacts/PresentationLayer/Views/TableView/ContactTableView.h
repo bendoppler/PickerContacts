@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property ContactTableViewDataSource *dataSourceDelegate;
 
 - (instancetype)init;
-- (void)setConstraints;
+- (void)setConstraintsWithCollectionViewIsHidden:(BOOL)isCollectionViewHidden;
 
 @end
 

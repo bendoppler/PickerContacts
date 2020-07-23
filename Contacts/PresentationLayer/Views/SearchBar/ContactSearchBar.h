@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ContactSearchBar : UISearchBar
 
-- (void)setConstraints;
+- (void)setConstraintsWithCollectionViewIsHidden:(BOOL)isCollectionViewHidden;
 
 @end
 

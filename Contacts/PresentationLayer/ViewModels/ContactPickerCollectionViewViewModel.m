@@ -18,6 +18,15 @@ NSUInteger NUMBER_OF_ITEMS_LIMIT = 5;
 
 @implementation ContactPickerCollectionViewViewModel
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _imageList = [[NSMutableDictionary alloc] init];
+    }
+    return self;
+}
+
 
 - (void)pickContactWith:(NSString *)identifier andImage:(nonnull UIImage *)image{
     if(_imageList[identifier] == nil) {
@@ -50,7 +59,7 @@ NSUInteger NUMBER_OF_ITEMS_LIMIT = 5;
 }
 
 - (NSArray *)data {
-    return [_imageList.allValues subarrayWithRange:NSMakeRange(0, NUMBER_OF_ITEMS_LIMIT)];
+    return [_imageList.allValues subarrayWithRange:NSMakeRange(0, MIN(NUMBER_OF_ITEMS_LIMIT, _imageList.allValues.count))];
 }
 
 @end

@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property ContactTableViewCellViewModel *viewModel;
 @property UIImageView *image;
 @property UILabel *label;
+@property UIView *containerView;
 - (void)setConstraints;
 @end
 

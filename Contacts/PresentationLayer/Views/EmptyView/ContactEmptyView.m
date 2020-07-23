@@ -26,14 +26,16 @@
         [_label setNumberOfLines:0];
         [_label setLineBreakMode:NSLineBreakByWordWrapping];
         [_label setTextAlignment:NSTextAlignmentCenter];
+        [self setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self addSubview:_label];
     }
     return self;
 }
 
 - (void)setConstraints {
-    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [NSLayoutConstraint deactivateConstraints:self.constraints];
     [self.heightAnchor constraintEqualToConstant:self.superview.bounds.size.height*0.9].active = YES;
+    [NSLayoutConstraint deactivateConstraints:_label.constraints];
     [_label setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_label.widthAnchor constraintEqualToConstant:self.superview.bounds.size.width].active = YES;
     [_label.centerXAnchor constraintEqualToAnchor:self.centerXAnchor].active = TRUE;

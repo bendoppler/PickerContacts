@@ -38,9 +38,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     ContactModel *model = [_viewModel data][indexPath.section][indexPath.row];
+    [cell.checkBox setChecked:NO];
     [cell.viewModel updateWithModel:model];
     [cell.label setText:[cell.viewModel getFullName]];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.bounds.size.height-10, cell.bounds.size.height-10)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
     [label setText:[cell.viewModel getAbbreviatedName]];
     [label setTextAlignment:NSTextAlignmentCenter];
     [label setTextColor:[UIColor whiteColor]];

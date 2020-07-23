@@ -24,14 +24,19 @@
         [self setSeparatorColor:[UIColor clearColor]];
         _tableViewDelegate = [[ContactTableViewDelegate alloc] init];
         [self setDelegate:_tableViewDelegate];
+        [self setTranslatesAutoresizingMaskIntoConstraints:NO];
     }
     return self;
 }
 
-- (void)setConstraints {
-    if(self.translatesAutoresizingMaskIntoConstraints == YES) {
-        [self setTranslatesAutoresizingMaskIntoConstraints:NO];
+- (void)setConstraintsWithCollectionViewIsHidden:(BOOL)isCollectionViewHidden {
+    [NSLayoutConstraint deactivateConstraints:self.constraints];
+    [self.widthAnchor constraintEqualToConstant:self.superview.bounds.size.width].active = YES;
+    [self.centerXAnchor constraintEqualToAnchor:self.superview.centerXAnchor].active = YES;
+    if (isCollectionViewHidden) {
         [self.heightAnchor constraintEqualToConstant:self.superview.bounds.size.height*0.9].active = YES;
+    }else {
+        [self.heightAnchor constraintEqualToConstant:self.superview.bounds.size.height*0.75].active = YES;
     }
 }
 

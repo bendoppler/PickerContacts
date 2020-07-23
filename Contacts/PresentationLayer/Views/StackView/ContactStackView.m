@@ -12,7 +12,8 @@
 
 @property id<ContactStackViewProtocol> service;
 @property ContactTableViewModel *viewModel;
-
+@property CGFloat height;
+@property CGFloat y;
 @end
 
 @implementation ContactStackView
@@ -43,7 +44,7 @@
                             [strongSelf->_emptyView setHidden:NO];
                             [strongSelf->_emptyView.label setText:@"Error when asking user's contacts' permission"];
                         }else if(!granted) {
-                            [strongSelf->_tableView setHidden:NO];
+                            [strongSelf->_tableView setHidden:YES];
                             [strongSelf->_emptyView setHidden:NO];
                             [strongSelf->_emptyView.label setText:@"This app needs permission to access contacts. Please enable it in settings."];
                         }else if(granted && !error) {
@@ -55,7 +56,7 @@
                 });
             }];
     }else if ([_service status] == CNAuthorizationStatusDenied){
-        [_tableView setHidden:NO];
+        [_tableView setHidden:YES];
         [_emptyView setHidden:NO];
         [_emptyView.label setText:@"This app needs permission to access contacts. Please enable it in settings."];
     }else if ([_service status] == CNAuthorizationStatusAuthorized) {
@@ -89,9 +90,13 @@
     [self setAlignment:UIStackViewAlignmentFill];
     [self setDistribution:UIStackViewDistributionFill];
     [self setSpacing:0];
+    _height = height;
+    _y = y;
     if(!_collectionView) {
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        [flowLayout setSectionInset:UIEdgeInsetsMake(0, 10, 0, 10)];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+        [flowLayout setMinimumLineSpacing:20];
         _collectionView = [[ContactPickerCollectionView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, height/6) collectionViewLayout:flowLayout];
         [_tableView.tableViewDelegate setDelegate:_collectionView.ds.viewModel];
         [_collectionView.ds.viewModel addObserver:self forKeyPath:@"state" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:nil];
@@ -101,8 +106,8 @@
     [self addArrangedSubview:_tableView];
     [self addArrangedSubview:_emptyView];
     [_collectionView setConstraints];
-    [_searchBar setConstraints];
-    [_tableView setConstraints];
+    [_searchBar setConstraintsWithCollectionViewIsHidden:YES];
+    [_tableView setConstraintsWithCollectionViewIsHidden:YES];
     [_emptyView setConstraints];
     [_collectionView setHidden:YES];
     [_tableView setHidden:NO];
@@ -123,6 +128,30 @@
 {
     if([keyPath isEqualToString:@"state"]) {
         NSLog(@"Set collection view layout based on state");
+        NSString *state = change[NSKeyValueChangeNewKey];
+        if ([state isEqualToString:@"empty"]) {
+            [NSLayoutConstraint deactivateConstraints:self.constraints];
+            [self setFrame:CGRectMake(0, _y, self.superview.bounds.size.width, _height)];
+            [self setAxis:UILayoutConstraintAxisVertical];
+            [self setAlignment:UIStackViewAlignmentFill];
+            [self setDistribution:UIStackViewDistributionFill];
+            [self setSpacing:0];
+            [_collectionView setHidden:YES];
+            [_tableView setConstraintsWithCollectionViewIsHidden:YES];
+        }else {
+            if ([_collectionView isHidden] == YES) {
+                [NSLayoutConstraint deactivateConstraints:self.constraints];
+                [self setFrame:CGRectMake(0, _y, self.superview.bounds.size.width, _height)];
+                [self setAxis:UILayoutConstraintAxisVertical];
+                [self setAlignment:UIStackViewAlignmentFill];
+                [self setDistribution:UIStackViewDistributionFill];
+                [self setSpacing:0];
+                [_collectionView setHidden:NO];
+                [_searchBar setConstraintsWithCollectionViewIsHidden:NO];
+                [_tableView setConstraintsWithCollectionViewIsHidden:NO];
+            }
+            [_collectionView reloadData];
+        }
     }
 }
 

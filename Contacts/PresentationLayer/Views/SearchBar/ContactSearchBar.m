@@ -23,14 +23,24 @@
     if (self) {
         [self setBackgroundColor:[UIColor blackColor]];
         [self setPlaceholder:@"Search"];
+        [self setTranslatesAutoresizingMaskIntoConstraints:NO];
     }
     return self;
 }
 
 - (void)setConstraints {
-    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.topAnchor constraintEqualToAnchor:self.superview.topAnchor].active = YES;
-    [self.heightAnchor constraintEqualToConstant:self.superview.bounds.size.height*0.1].active = YES;
+}
+
+- (void)setConstraintsWithCollectionViewIsHidden:(BOOL)isCollectionViewHidden {
+    [NSLayoutConstraint deactivateConstraints:self.constraints];
+    [self.widthAnchor constraintEqualToConstant:self.superview.bounds.size.width].active = YES;
+    [self.centerXAnchor constraintEqualToAnchor:self.superview.centerXAnchor].active = YES;
+    if(isCollectionViewHidden) {
+        [self.topAnchor constraintEqualToAnchor:self.superview.topAnchor].active = YES;
+        [self.heightAnchor constraintEqualToConstant:self.superview.bounds.size.height*0.1].active = YES;
+    }else {
+        [self.heightAnchor constraintEqualToConstant:self.superview.bounds.size.height*0.1].active = YES;
+    }
 }
 
 @end
