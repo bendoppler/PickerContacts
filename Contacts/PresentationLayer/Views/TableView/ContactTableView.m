@@ -60,13 +60,18 @@
     NSIndexPath *indexPath = [self indexPathForRowAtPoint:buttonPosition];
     [sender setSelected:![sender isSelected]];
     if(indexPath != nil) {
-        if([sender isSelected] == NO) {
-            [self deselectRowAtIndexPath:indexPath animated:NO];
-            [self.tableViewDelegate tableView:self willDeselectRowAtIndexPath:indexPath];
+        NSIndexPath *checkIndexPath;
+        if([sender isChecked] == YES) {
+            checkIndexPath = [self.tableViewDelegate tableView:self willDeselectRowAtIndexPath:indexPath];
+            if(checkIndexPath) {
+                [self deselectRowAtIndexPath:indexPath animated:NO];
+            }
         }
         else {
-            [self selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
-            [self.tableViewDelegate tableView:self willSelectRowAtIndexPath:indexPath];
+            checkIndexPath = [self.tableViewDelegate tableView:self willSelectRowAtIndexPath:indexPath];
+            if(checkIndexPath) {
+                [self selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+            }
         }
     }
 }

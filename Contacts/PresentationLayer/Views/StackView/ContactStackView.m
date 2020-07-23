@@ -154,6 +154,10 @@
     }
 }
 
+- (NSArray *)getPickedContactFullnames {
+    return [_collectionView.ds getPickedContactFullnames];
+}
+
 - (void)dealloc
 {
     [_collectionView.ds.viewModel removeObserver:self forKeyPath:@"state"];

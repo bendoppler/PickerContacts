@@ -17,6 +17,7 @@
     NSNumber *pickCount;
     ContactNavigationBarItemStackView *navigationBarItemView;
     UIBarButtonItem *sendMessageBarButtonItem;
+    NSArray *pickedContactFullnames;
 }
 
 @end
@@ -83,7 +84,7 @@
     }else if([state isEqualToString:@"fit"]) {
         [sendMessageBarButtonItem setEnabled:YES];
     }else {
-        [sendMessageBarButtonItem setEnabled:NO];
+        [sendMessageBarButtonItem setEnabled:YES];
         UIAlertController *alertController = [UIAlertController
                                               alertControllerWithTitle:@"Limitation reach"
                                               message:@"Can't invite more than 5 people at a time"
@@ -98,7 +99,21 @@
 
 //MARK: Send message
 - (void)sendMessage {
-    NSLog(@"Send Message");
+    pickedContactFullnames = [stackView getPickedContactFullnames];
+    NSMutableString *text = [NSMutableString stringWithString:@"Send invitation to "];
+    for(int i = 0; i < pickedContactFullnames.count-1; ++i) {
+        [text appendFormat:@"%@, ", pickedContactFullnames[i]];
+    }
+    [text appendFormat:@"%@.", pickedContactFullnames[pickedContactFullnames.count-1]];
+    UIAlertController *alertController = [UIAlertController
+                                          alertControllerWithTitle:@"Send invitation"
+                                          message:text
+                                          preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction
+                                actionWithTitle:@"Ok"
+                                style:UIAlertActionStyleDefault
+                                handler:nil]];
+    [self presentViewController:alertController animated:true completion:nil];
 }
 
 @end

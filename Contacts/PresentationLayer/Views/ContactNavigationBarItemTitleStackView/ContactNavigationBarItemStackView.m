@@ -36,7 +36,7 @@
     NSDictionary *info = notification.userInfo;
     NSNumber *count = info[@"count"];
     [UIView animateWithDuration:0.1 delay:0.02 options:UIViewAnimationOptionAutoreverse animations:^{
-        NSString *text = [NSString stringWithFormat:@"Picked: %@", count];
+        NSString *text = [NSString stringWithFormat:@"Picked: %@", count.intValue > 5 ? @(5) : count];
         self->_pickedCountLabel.transform = CGAffineTransformScale(self->_pickedCountLabel.transform, 1.2, 1.2);
         [self->_pickedCountLabel setText:text];
     } completion:^(BOOL finished) {

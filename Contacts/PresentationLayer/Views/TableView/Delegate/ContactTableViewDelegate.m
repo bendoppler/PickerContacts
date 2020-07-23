@@ -12,15 +12,19 @@
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ContactTableViewCell *cell = (ContactTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-    [cell.checkBox setChecked:YES];
-    [self pickCellWithIndentifier:[cell.viewModel getIdentifier] andImage:cell.image.image];
-    return indexPath;
+    BOOL isOverloaded = [self pickCell:cell];
+    if(!isOverloaded) {
+        [cell.checkBox setChecked:YES];
+        return indexPath;
+    }
+    [cell.checkBox setChecked:NO];
+    return nil;
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     ContactTableViewCell *cell = (ContactTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     [cell.checkBox setChecked:NO];
-    [self unpickCellWithIndentifier:[cell.viewModel getIdentifier]];
+    [self unpickCell:cell];
     return indexPath;
 }
 
@@ -28,12 +32,12 @@
     return tableView.superview.bounds.size.height/8;
 }
 
-- (void) unpickCellWithIndentifier:(NSString *)identifier {
-    [self.delegate unpickContactWith:identifier];
+- (void) unpickCell:(ContactTableViewCell *)cell {
+    [self.delegate unpickContactWithIdentifier:[cell.viewModel getIdentifier] image:cell.image.image andFullName:[cell.viewModel getFullName]];
 }
 
-- (void) pickCellWithIndentifier:(NSString *)identifier andImage:(UIImage *)image{
-    [self.delegate pickContactWith:identifier andImage:image];
+- (BOOL) pickCell:(ContactTableViewCell *)cell{
+    return [self.delegate pickContactWithIdentifier:[cell.viewModel getIdentifier] image:cell.image.image andFullName:[cell.viewModel getFullName]];
 }
 
 @end

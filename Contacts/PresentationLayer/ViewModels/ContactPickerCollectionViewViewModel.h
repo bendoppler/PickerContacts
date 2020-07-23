@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ContactPickerCollectionViewViewModel : NSObject<ContactTableViewDelegatePickContactsDelegate>
 
+@property NSMutableArray<NSString *> *fullNames;
 @property NSString *state;
 - (NSArray *) data;
 

@@ -34,6 +34,8 @@
     return cell;
 }
 
-
+- (NSArray *)getPickedContactFullnames {
+    return _viewModel.fullNames;
+}
 
 @end

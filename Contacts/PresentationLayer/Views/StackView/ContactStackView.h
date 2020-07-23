@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithService:(id<ContactStackViewProtocol>)service;
 - (void)setConstraintWithHeight:(CGFloat)height andOriginY:(CGFloat)y;
 - (void)updateContacts;
+- (NSArray *)getPickedContactFullnames;
 
 @end
 

@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property ContactPickerCollectionViewViewModel *viewModel;
 
+- (NSArray*)getPickedContactFullnames;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -14,7 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ContactTableViewCellViewModel : NSObject
 
-
 - (void)updateWithModel:(ContactModel *)model;
 - (NSString *)getFullName;
 - (NSString *)getAbbreviatedName;
