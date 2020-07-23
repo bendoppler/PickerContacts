@@ -46,7 +46,7 @@
 }
 
 
-- (void)setDataSource:(id<UITableViewDataSource>)dataSource {
+- (void)setDataSource:(id)dataSource {
     [super setDataSource:dataSource];
     _dataSourceDelegate = dataSource;
 }
@@ -78,6 +78,11 @@
 
 - (void)selectRowAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated scrollPosition:(UITableViewScrollPosition)scrollPosition {
     [super selectRowAtIndexPath:indexPath animated:animated scrollPosition:scrollPosition];
+}
+
+- (void)setDataWithSearchText:(NSString *)searchText {
+    [_dataSourceDelegate setDataWithSearchText:searchText];
+    [self reloadData];
 }
 
 @end

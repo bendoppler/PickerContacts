@@ -13,10 +13,23 @@
 @property id<ContactTableViewModelProtocol> model;
 @property (nonatomic) NSMutableArray *data;
 @property (nonatomic) NSArray *keys;
+@property (nonatomic) NSMutableArray *searchTextData;
+@property (nonatomic) NSMutableArray *searchTextKeys;
 @end
 
 @implementation ContactTableViewModel
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _data = [[NSMutableArray alloc] init];
+        _keys = [[NSMutableArray alloc] init];
+        _searchTextData = [[NSMutableArray alloc] init];
+        _searchTextKeys = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
 
 - (NSArray<NSArray *> *)data {
     return _data;
@@ -40,15 +53,10 @@
     return @"#";
 }
 
-- (void)updateTableViewWithModel:(id<ContactTableViewModelProtocol>)model {
+- (void)updateTableViewDataSourceWithModel:(id<ContactTableViewModelProtocol>)model {
+    //lazy load
     if(!_model) {
         _model = model;
-    }
-    if(!_data) {
-        _data = [[NSMutableArray alloc] init];
-    }
-    if(!_keys) {
-        _keys = [[NSMutableArray alloc] init];
     }
     if(_model) {
         NSArray<ContactModel *> *contacts = [_model contactList];
@@ -71,5 +79,59 @@
     }
 }
 
+- (void)updateTableViewDataSourceWithSearchText:(NSString *)searchText {
+    [_searchTextKeys removeAllObjects];
+    [_searchTextData removeAllObjects];
+    for(int i = 0; i < _data.count; ++i) {
+        NSArray *temp = _data[i];
+        NSArray *matchedContacts = [temp objectsAtIndexes:[temp indexesOfObjectsPassingTest:^BOOL(ContactModel* obj, NSUInteger idx, BOOL *stop) {
+            return [self isMatchedBetweenContact:obj andSearchText:searchText];
+        }]];
+        if(matchedContacts.count > 0) {
+            [_searchTextKeys addObject:_keys[i]];
+            [_searchTextData addObject:matchedContacts];
+        }
+    }
+}
+
+- (BOOL)isMatchedBetweenContact:(ContactModel *)contact andSearchText:(NSString *)searchText {
+    NSString *fullName = [self getFullNameFromContact:contact];
+    if([fullName.lowercaseString hasPrefix:searchText.lowercaseString]) {
+        return YES;
+    }
+    return NO;
+}
+
+- (NSString *)getFullNameFromContact:(ContactModel *)contact{
+    NSMutableString *fullName = [NSMutableString stringWithString:@""];
+    if(![self validText:contact.firstName] && ![self validText:contact.middleName] && ![self validText:contact.lastName] &&
+       ![self validText:contact.nameSuffix]) {
+        return fullName = contact.phoneNumberArray.count == 0 ? nil : contact.phoneNumberArray[0];
+    }
+    if([self validText:contact.firstName]) {
+        [fullName appendFormat:@"%@ ", contact.firstName];
+    }
+    if([self validText:contact.middleName]) {
+        [fullName appendFormat:@"%@ ", contact.middleName];
+    }
+    if([self validText:contact.lastName]) {
+        [fullName appendFormat:@"%@ ", contact.lastName];
+    }
+    if([self validText:contact.nameSuffix]) {
+        [fullName appendFormat:@"%@", contact.nameSuffix];
+    }
+    if([fullName characterAtIndex: fullName.length-1] == ' ') {
+        return [fullName substringWithRange:NSMakeRange(0, fullName.length-1)];
+    }
+    return fullName;
+}
+
+- (NSArray<NSString *> *)indexSearchTextTitles {
+    return _searchTextKeys;
+}
+
+- (NSArray<NSArray *> *)searchTextdata {
+    return _searchTextData;
+}
 
 @end

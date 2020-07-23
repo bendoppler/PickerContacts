@@ -15,8 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ContactTableViewModel : NSObject<ContactTableViewDataSourceProtocol>
 
-- (void)updateTableViewWithModel:(id<ContactTableViewModelProtocol>)model;
-
+- (void)updateTableViewDataSourceWithModel:(id<ContactTableViewModelProtocol>)model;
 @end
 
 NS_ASSUME_NONNULL_END

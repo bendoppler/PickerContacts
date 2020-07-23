@@ -27,6 +27,7 @@
         _searchBar = [[ContactSearchBar alloc] init];
         _emptyView = [[ContactEmptyView alloc] init];
         _viewModel = [[ContactTableViewModel alloc] init];
+        [_searchBar.contactSearchBarDelegate setSearchTextDelegate:_tableView];
     }
     return self;
 }
@@ -118,7 +119,7 @@
 - (void)updateContacts {
     NSArray<CNContact *> *contacts = [_service contacts];
     [[ContactModelList sharedInstance] updateWithCNContacts:contacts];
-    [_viewModel updateTableViewWithModel:[ContactModelList sharedInstance]];
+    [_viewModel updateTableViewDataSourceWithModel:[ContactModelList sharedInstance]];
     [_tableView setDataSource:[[ContactTableViewDataSource alloc] initWithViewModel: _viewModel]];
     [_tableView reloadData];
 }

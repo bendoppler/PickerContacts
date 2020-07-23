@@ -10,10 +10,11 @@
 #import "ContactTableViewDataSource.h"
 #import "ContactTableViewModel.h"
 #import "ContactTableViewDelegate.h"
+#import "ContactSearchBarDelegateSearchTextDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ContactTableView : UITableView
+@interface ContactTableView : UITableView<ContactSearchBarDelegateSearchTextDelegate>
 
 @property ContactTableViewDelegate *tableViewDelegate;
 @property ContactTableViewDataSource *dataSourceDelegate;

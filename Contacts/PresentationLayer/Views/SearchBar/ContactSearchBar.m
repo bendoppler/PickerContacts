@@ -8,13 +8,6 @@
 
 #import "ContactSearchBar.h"
 
-@interface ContactSearchBar()
-
-@property NSLayoutConstraint *widthConstraint;
-@property NSLayoutConstraint *heightConstraint;
-
-@end
-
 @implementation ContactSearchBar
 
 - (instancetype)init
@@ -24,7 +17,10 @@
         [self setSearchBarStyle:UISearchBarStyleMinimal];
         [self setBackgroundColor:[UIColor whiteColor]];
         [self setPlaceholder:@"Search"];
+        [self setShowsCancelButton:YES];
         [self setTranslatesAutoresizingMaskIntoConstraints:NO];
+        _contactSearchBarDelegate = [[ContactSearchBarDelegate alloc] init];
+        [self setDelegate:_contactSearchBarDelegate];
     }
     return self;
 }

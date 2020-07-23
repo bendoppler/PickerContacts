@@ -23,6 +23,7 @@
 		5377209624BC838700AF3195 /* CircleCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 5377209524BC838700AF3195 /* CircleCheckBox.m */; };
 		5377209924BC8F2A00AF3195 /* ContactTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5377209824BC8F2A00AF3195 /* ContactTableViewDataSource.m */; };
 		5377209C24BC8F3500AF3195 /* ContactTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5377209B24BC8F3500AF3195 /* ContactTableView.m */; };
+		53A837D924C9DBFE00903898 /* ContactSearchBarDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A837D824C9DBFE00903898 /* ContactSearchBarDelegate.m */; };
 		53A8CBCE24BD9DA800763476 /* ContactService.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A8CBCD24BD9DA800763476 /* ContactService.m */; };
 		53A8CBD124BDA70700763476 /* ContactEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A8CBD024BDA70700763476 /* ContactEmptyView.m */; };
 		53A8CBD424BDABCC00763476 /* ContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A8CBD324BDABCC00763476 /* ContactModel.m */; };
@@ -87,6 +88,9 @@
 		5377209A24BC8F3500AF3195 /* ContactTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableView.h; sourceTree = "<group>"; };
 		5377209B24BC8F3500AF3195 /* ContactTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTableView.m; sourceTree = "<group>"; };
 		5377209D24BC921000AF3195 /* ContactTableViewDataSourceProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactTableViewDataSourceProtocol.h; sourceTree = "<group>"; };
+		53A837D724C9DBFE00903898 /* ContactSearchBarDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactSearchBarDelegate.h; sourceTree = "<group>"; };
+		53A837D824C9DBFE00903898 /* ContactSearchBarDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactSearchBarDelegate.m; sourceTree = "<group>"; };
+		53A837DB24C9EB0800903898 /* ContactSearchBarDelegateSearchTextDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactSearchBarDelegateSearchTextDelegate.h; sourceTree = "<group>"; };
 		53A8CBCC24BD9DA800763476 /* ContactService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactService.h; sourceTree = "<group>"; };
 		53A8CBCD24BD9DA800763476 /* ContactService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactService.m; sourceTree = "<group>"; };
 		53A8CBCF24BDA70700763476 /* ContactEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactEmptyView.h; sourceTree = "<group>"; };
@@ -389,6 +393,9 @@
 			children = (
 				53CB17DA24BFF3CE002B2488 /* ContactSearchBar.h */,
 				53CB17DB24BFF3CE002B2488 /* ContactSearchBar.m */,
+				53A837D724C9DBFE00903898 /* ContactSearchBarDelegate.h */,
+				53A837D824C9DBFE00903898 /* ContactSearchBarDelegate.m */,
+				53A837DB24C9EB0800903898 /* ContactSearchBarDelegateSearchTextDelegate.h */,
 			);
 			path = SearchBar;
 			sourceTree = "<group>";
@@ -552,6 +559,7 @@
 				5377209C24BC8F3500AF3195 /* ContactTableView.m in Sources */,
 				533452F224BA029C0098396C /* ContactTableViewCell.m in Sources */,
 				53CADCAE24C156B8007A9BA9 /* ContactPickerCollectionViewCell.m in Sources */,
+				53A837D924C9DBFE00903898 /* ContactSearchBarDelegate.m in Sources */,
 				53CADCB224C1573F007A9BA9 /* ContactPickerCollectionViewDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

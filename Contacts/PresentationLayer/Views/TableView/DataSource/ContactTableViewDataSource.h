@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property id<ContactTableViewDataSourceProtocol> viewModel;
 -(instancetype) initWithViewModel:(id<ContactTableViewDataSourceProtocol>)viewModel;
-
+- (void)setDataWithSearchText:(NSString *)searchText;
 @end
 
 NS_ASSUME_NONNULL_END

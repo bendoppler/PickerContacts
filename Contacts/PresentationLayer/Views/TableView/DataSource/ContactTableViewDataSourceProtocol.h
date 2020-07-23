@@ -17,6 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIColor *)colorWithAbbreviatedName:(NSString *)abbreviatedName andFullName:(NSString *)fullName;
 - (NSArray<NSString *> *)indexTitles;
 - (NSArray<NSArray *> *)data;
+- (NSArray<NSString *> *)indexSearchTextTitles;
+- (NSArray<NSArray *> *)searchTextdata;
+- (void)updateTableViewDataSourceWithSearchText:(NSString *)searchText;
 @end
 
 NS_ASSUME_NONNULL_END
