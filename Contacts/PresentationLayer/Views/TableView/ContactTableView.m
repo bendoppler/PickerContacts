@@ -25,6 +25,7 @@
         _tableViewDelegate = [[ContactTableViewDelegate alloc] init];
         [self setDelegate:_tableViewDelegate];
         [self setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [self setAllowsMultipleSelection:YES];
     }
     return self;
 }
@@ -36,7 +37,7 @@
     if (isCollectionViewHidden) {
         [self.heightAnchor constraintEqualToConstant:self.superview.bounds.size.height*0.9].active = YES;
     }else {
-        [self.heightAnchor constraintEqualToConstant:self.superview.bounds.size.height*0.75].active = YES;
+        [self.heightAnchor constraintEqualToConstant:self.superview.bounds.size.height*0.78].active = YES;
     }
 }
 
@@ -54,23 +55,18 @@
     [super setDelegate:delegate];
 }
 
-- (void)checkBoxTapped:(id)sender{
+- (void)checkBoxTapped:(CircleCheckBox *)sender{
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self];
     NSIndexPath *indexPath = [self indexPathForRowAtPoint:buttonPosition];
+    [sender setSelected:![sender isSelected]];
     if(indexPath != nil) {
-        if([sender isChecked] == NO) {
-            [_tableViewDelegate tableView:self willSelectRowAtIndexPath:indexPath];
-            [self selectRowAtIndexPath:indexPath animated:false scrollPosition:UITableViewScrollPositionMiddle];
-            if([_tableViewDelegate respondsToSelector:@selector(tableView:didSelectRowAtIndexPath:)]) {
-                [_tableViewDelegate tableView:self didSelectRowAtIndexPath:indexPath];
-            }
+        if([sender isSelected] == NO) {
+            [self deselectRowAtIndexPath:indexPath animated:NO];
+            [self.tableViewDelegate tableView:self willDeselectRowAtIndexPath:indexPath];
         }
         else {
-            [_tableViewDelegate tableView:self willDeselectRowAtIndexPath:indexPath];
-            [self deselectRowAtIndexPath:indexPath animated:false];
-            if([_tableViewDelegate respondsToSelector:@selector(tableView:didSelectRowAtIndexPath:)]) {
-                [_tableViewDelegate tableView:self didDeselectRowAtIndexPath:indexPath];
-            }
+            [self selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+            [self.tableViewDelegate tableView:self willSelectRowAtIndexPath:indexPath];
         }
     }
 }

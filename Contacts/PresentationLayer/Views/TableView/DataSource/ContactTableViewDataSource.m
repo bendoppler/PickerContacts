@@ -38,7 +38,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     ContactModel *model = [_viewModel data][indexPath.section][indexPath.row];
-    [cell.checkBox setChecked:NO];
+    if(![cell isSelected]) {
+        [cell.checkBox setChecked:NO];
+    }else {
+        [cell.checkBox setChecked:YES];
+    }
     [cell.viewModel updateWithModel:model];
     [cell.label setText:[cell.viewModel getFullName]];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];

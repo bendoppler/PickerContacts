@@ -127,7 +127,6 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if([keyPath isEqualToString:@"state"]) {
-        NSLog(@"Set collection view layout based on state");
         NSString *state = change[NSKeyValueChangeNewKey];
         if ([state isEqualToString:@"empty"]) {
             [NSLayoutConstraint deactivateConstraints:self.constraints];

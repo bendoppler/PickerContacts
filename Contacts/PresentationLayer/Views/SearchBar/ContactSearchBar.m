@@ -21,7 +21,8 @@
 {
     self = [super init];
     if (self) {
-        [self setBackgroundColor:[UIColor blackColor]];
+        [self setSearchBarStyle:UISearchBarStyleMinimal];
+        [self setBackgroundColor:[UIColor whiteColor]];
         [self setPlaceholder:@"Search"];
         [self setTranslatesAutoresizingMaskIntoConstraints:NO];
     }
