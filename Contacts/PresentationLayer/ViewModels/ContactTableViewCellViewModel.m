@@ -10,8 +10,8 @@
 
 @interface ContactTableViewCellViewModel()
 
-@property NSString *abbreviatedName;
 @property NSString *fullName;
+@property NSString *abbreviatedName;
 @property ContactModel *model;
 
 @end

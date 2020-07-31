@@ -76,7 +76,6 @@
 }
 
 - (void)updateSendSMSButton:(NSNotification *)notification {
-    NSLog(@"Let update sms button");
     NSDictionary *info = notification.userInfo;
     NSString *state = info[@"state"];
     if([state isEqualToString:@"empty"]) {

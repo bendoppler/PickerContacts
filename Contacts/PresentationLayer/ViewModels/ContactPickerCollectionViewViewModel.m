@@ -12,7 +12,7 @@ NSUInteger NUMBER_OF_ITEMS_LIMIT = 5;
 
 @interface ContactPickerCollectionViewViewModel()
 
-@property NSMutableSet<NSString *> *identifiers;
+@property NSMutableArray<NSString *> *identifiers;
 @property NSMutableArray<UIImage *> *images;
 
 @end
@@ -23,7 +23,7 @@ NSUInteger NUMBER_OF_ITEMS_LIMIT = 5;
 {
     self = [super init];
     if (self) {
-        _identifiers = [[NSMutableSet alloc] init];
+        _identifiers = [[NSMutableArray alloc] init];
         _images = [[NSMutableArray alloc] init];
         _fullNames = [[NSMutableArray alloc] init];
     }
@@ -32,16 +32,14 @@ NSUInteger NUMBER_OF_ITEMS_LIMIT = 5;
 
 
 - (BOOL)pickContactWithIdentifier:(NSString *)identifier image:(UIImage *)image andFullName:(nonnull NSString *)fullName {
-    if(![_identifiers containsObject:identifier]) {
-        [_identifiers addObject:identifier];
-        [_images addObject:image];
-        [_fullNames addObject:fullName];
-    }
     NSMutableDictionary *state = [[NSMutableDictionary alloc] init];
-    if(_images.count > NUMBER_OF_ITEMS_LIMIT) {
+    if(_identifiers.count == NUMBER_OF_ITEMS_LIMIT) {
         [self setValue:@"overload" forKey:@"state"];
         state[@"state"] = @"overload";
     }else {
+        [_identifiers addObject:identifier];
+        [_fullNames addObject:fullName];
+        [_images addObject:image];
         [self setValue:@"fit" forKey:@"state"];
         state[@"state"] = @"fit";
     }
@@ -49,17 +47,15 @@ NSUInteger NUMBER_OF_ITEMS_LIMIT = 5;
     [NSNotificationCenter.defaultCenter postNotificationName:@"com.piendop.contactPickerCollectionViewState" object:self userInfo:state];
     return [state[@"state"] isEqualToString:@"overload"];
 }
-- (void)unpickContactWithIdentifier:(NSString *)identifier image:(nonnull UIImage *)image andFullName:(nonnull NSString *)fullName{
-    [_identifiers removeObject:identifier];
-    [_images removeObject:image];
-    [_fullNames removeObject:fullName];
+- (void)unpickContactWithIdentifier:(NSString *)identifier {
+    NSUInteger index = [_identifiers indexOfObject:identifier];
+    [_images removeObjectAtIndex:index];
+    [_fullNames removeObjectAtIndex:index];
+    [_identifiers removeObjectAtIndex:index];
     NSMutableDictionary *state = [[NSMutableDictionary alloc] init];
     if(_images.count == 0) {
         [self setValue:@"empty" forKey:@"state"];
         state [@"state"] = @"empty";
-    }else if(_images.count > NUMBER_OF_ITEMS_LIMIT) {
-        [self setValue:@"overload" forKey:@"state"];
-        state[@"state"] = @"overload";
     }else {
         [self setValue:@"fit" forKey:@"state"];
         state[@"state"] = @"fit";

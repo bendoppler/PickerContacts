@@ -10,6 +10,7 @@
 
 @interface ContactTableViewDataSource()
 @property BOOL isInSearchMode;
+@property ContactImageCache *imageCache;
 @end
 
 @implementation ContactTableViewDataSource
@@ -19,6 +20,7 @@
     if(self) {
         _viewModel = viewModel;
         _isInSearchMode = NO;
+        _imageCache = [[ContactImageCache alloc] init];
     }
     return self;
 }
@@ -66,23 +68,29 @@
     }
     [cell.viewModel updateWithModel:model];
     [cell.label setText:[cell.viewModel getFullName]];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
-    [label setText:[cell.viewModel getAbbreviatedName]];
-    [label setTextAlignment:NSTextAlignmentCenter];
-    [label setTextColor:[UIColor whiteColor]];
-    [label setBackgroundColor:[cell.viewModel getColor]];
-    [label.layer setShadowColor:[[UIColor blackColor] CGColor]];
-    [label.layer setShadowOffset:CGSizeMake(0.0f, 0.0f)];
-    [label.layer setShadowOpacity:0.5f];
-    [label.layer setShadowRadius:1.0f];
-    [label.layer setCornerRadius:label.frame.size.width/2];
-    [label setClipsToBounds:YES];
-    UIGraphicsBeginImageContextWithOptions(label.bounds.size, false, 0.0);
-    [label.layer renderInContext:UIGraphicsGetCurrentContext()];
-    [cell.image setImage:UIGraphicsGetImageFromCurrentImageContext()];
-    UIGraphicsEndImageContext();
     [cell.checkBox addTarget:tableView action:@selector(checkBoxTapped:) forControlEvents:UIControlEventTouchUpInside];
     [cell setConstraints];
+    UIImage *image = [_imageCache objectForKey:cell.viewModel.getIdentifier];
+    if(image == nil) {
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(cell.bounds.size.height/2 + 20, 5, cell.bounds.size.height - 10, cell.bounds.size.height - 10)];
+        [label setText:[cell.viewModel getAbbreviatedName]];
+        [label setTextAlignment:NSTextAlignmentCenter];
+        [label setTextColor:[UIColor whiteColor]];
+        [label setBackgroundColor:[cell.viewModel getColor]];
+        [label.layer setShadowColor:[[UIColor blackColor] CGColor]];
+        [label.layer setShadowOffset:CGSizeMake(0.0f, 0.0f)];
+        [label.layer setShadowOpacity:0.5f];
+        [label.layer setShadowRadius:1.0f];
+        [label.layer setCornerRadius:label.frame.size.width/2];
+        [label setClipsToBounds:YES];
+        UIGraphicsBeginImageContextWithOptions(label.bounds.size, false, 0.0);
+        [label.layer renderInContext:UIGraphicsGetCurrentContext()];
+        [cell.cellImageView setImage:UIGraphicsGetImageFromCurrentImageContext()];
+        [_imageCache setObject:cell.cellImageView.image forKey:cell.viewModel.getIdentifier];
+    }else {
+        [cell.cellImageView setImage:image];
+    }
+    UIGraphicsEndImageContext();
     return cell;
 }
 

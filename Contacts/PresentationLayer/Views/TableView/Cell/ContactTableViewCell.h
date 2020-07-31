@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property CircleCheckBox *checkBox;
 @property ContactTableViewCellViewModel *viewModel;
-@property UIImageView *image;
+@property UIImageView *cellImageView;
 @property UILabel *label;
 @property UIView *containerView;
 - (void)setConstraints;

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		530165ED24D3BB6000AC7FD0 /* ContactImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 530165EC24D3BB6000AC7FD0 /* ContactImageCache.m */; };
 		53096CA224C095F5003D9909 /* ContactNavigationBarItemStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53096CA124C095F5003D9909 /* ContactNavigationBarItemStackView.m */; };
 		53096CA624C0A2E1003D9909 /* ContactPickerCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53096CA524C0A2E1003D9909 /* ContactPickerCollectionView.m */; };
 		53096CA924C0A509003D9909 /* ContactPickerCollectionViewViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53096CA824C0A509003D9909 /* ContactPickerCollectionViewViewModel.m */; };
@@ -54,6 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		530165EB24D3BB6000AC7FD0 /* ContactImageCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactImageCache.h; sourceTree = "<group>"; };
+		530165EC24D3BB6000AC7FD0 /* ContactImageCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactImageCache.m; sourceTree = "<group>"; };
 		53096CA024C095F5003D9909 /* ContactNavigationBarItemStackView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactNavigationBarItemStackView.h; sourceTree = "<group>"; };
 		53096CA124C095F5003D9909 /* ContactNavigationBarItemStackView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactNavigationBarItemStackView.m; sourceTree = "<group>"; };
 		53096CA424C0A2E1003D9909 /* ContactPickerCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactPickerCollectionView.h; sourceTree = "<group>"; };
@@ -317,6 +320,8 @@
 				5377209724BC8F2A00AF3195 /* ContactTableViewDataSource.h */,
 				5377209824BC8F2A00AF3195 /* ContactTableViewDataSource.m */,
 				5377209D24BC921000AF3195 /* ContactTableViewDataSourceProtocol.h */,
+				530165EB24D3BB6000AC7FD0 /* ContactImageCache.h */,
+				530165EC24D3BB6000AC7FD0 /* ContactImageCache.m */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -555,6 +560,7 @@
 				53096CA224C095F5003D9909 /* ContactNavigationBarItemStackView.m in Sources */,
 				534E464924B86C4B006C56B1 /* ContactTableViewModel.m in Sources */,
 				534E461024B85D17006C56B1 /* SceneDelegate.m in Sources */,
+				530165ED24D3BB6000AC7FD0 /* ContactImageCache.m in Sources */,
 				53A8CBD424BDABCC00763476 /* ContactModel.m in Sources */,
 				5377209C24BC8F3500AF3195 /* ContactTableView.m in Sources */,
 				533452F224BA029C0098396C /* ContactTableViewCell.m in Sources */,

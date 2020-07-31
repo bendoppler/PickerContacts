@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BOOL)pickContactWithIdentifier:(NSString *)identifier image:(UIImage *)image andFullName:(NSString *)fullName;
 
-- (void)unpickContactWithIdentifier:(NSString *)identifier image:(UIImage *)image andFullName:(NSString *)fullName;
+- (void)unpickContactWithIdentifier:(NSString *)identifier ;
 
 @end
 

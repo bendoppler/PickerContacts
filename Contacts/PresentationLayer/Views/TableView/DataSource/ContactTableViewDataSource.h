@@ -10,6 +10,7 @@
 #import "ContactTableViewCell.h"
 #import "ContactTableViewDataSourceProtocol.h"
 #import "ContactModel.h"
+#import "ContactImageCache.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -70,7 +70,7 @@
         else {
             checkIndexPath = [self.tableViewDelegate tableView:self willSelectRowAtIndexPath:indexPath];
             if(checkIndexPath) {
-                [self selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+                [self selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
             }
         }
     }

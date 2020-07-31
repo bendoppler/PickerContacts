@@ -33,11 +33,11 @@
 }
 
 - (void) unpickCell:(ContactTableViewCell *)cell {
-    [self.delegate unpickContactWithIdentifier:[cell.viewModel getIdentifier] image:cell.image.image andFullName:[cell.viewModel getFullName]];
+    [self.delegate unpickContactWithIdentifier:[cell.viewModel getIdentifier]];
 }
 
 - (BOOL) pickCell:(ContactTableViewCell *)cell{
-    return [self.delegate pickContactWithIdentifier:[cell.viewModel getIdentifier] image:cell.image.image andFullName:[cell.viewModel getFullName]];
+    return [self.delegate pickContactWithIdentifier:[cell.viewModel getIdentifier] image:cell.cellImageView.image andFullName:[cell.viewModel getFullName]];
 }
 
 @end
