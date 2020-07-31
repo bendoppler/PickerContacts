@@ -10,6 +10,7 @@
 #import <Contacts/Contacts.h>
 #import "ContactStackView.h"
 #import "ContactNavigationBarItemStackView.h"
+#import "NSNotificationCenter+BlockAdditions.h"
 
 
 @interface ContactViewController : UIViewController

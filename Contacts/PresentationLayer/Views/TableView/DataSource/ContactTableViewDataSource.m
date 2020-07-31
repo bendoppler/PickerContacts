@@ -61,14 +61,18 @@
     }else {
         model = [_viewModel data][indexPath.section][indexPath.row];
     }
-    if(![cell isSelected]) {
-        [cell.checkBox setChecked:NO];
-    }else {
+    if([_delegate.pickedContacts containsObject:cell.viewModel.getIdentifier]) {
         [cell.checkBox setChecked:YES];
+        [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+    }else{
+        [cell.checkBox setChecked:NO];
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
     }
     [cell.viewModel updateWithModel:model];
     [cell.label setText:[cell.viewModel getFullName]];
-    [cell.checkBox addTarget:tableView action:@selector(checkBoxTapped:) forControlEvents:UIControlEventTouchUpInside];
+    if(![cell.checkBox.allTargets containsObject:tableView]) {
+        [cell.checkBox addTarget:tableView action:@selector(checkBoxTapped:) forControlEvents:UIControlEventTouchUpInside];
+    }
     [cell setConstraints];
     UIImage *image = [_imageCache objectForKey:cell.viewModel.getIdentifier];
     if(image == nil) {

@@ -24,7 +24,7 @@
 
 @implementation ContactViewController
 
-//MARK: Init views and services
+//MARK: Setup views
 - (void)setupViews {
     [self.view setBackgroundColor:[UIColor whiteColor]];
     if(!navigationBarItemView) {
@@ -58,42 +58,54 @@
     [self setupViews];
 }
 
+//MARK: Notification
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    __weak ContactViewController *weakSelf = self;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateContacts) name:CNContactStoreDidChangeNotification object:nil];
-    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateSendSMSButton:) name:@"com.piendop.contactPickerCollectionViewState" object:nil];
+    [NSNotificationCenter.defaultCenter
+     addObserverForName:CNContactStoreDidChangeNotification
+     object:nil
+     queue:nil
+     usingBlock:^(NSNotification * _Nonnull note) {
+        __strong ContactViewController *strongSelf = weakSelf;
+        if (strongSelf) {
+            [strongSelf->stackView updateContacts];
+        }
+    }];
+    [NSNotificationCenter.defaultCenter
+     addObserverForName:@"com.piendop.contactPickerCollectionViewState"
+     object:nil
+     queue:nil
+     usingBlock:^(NSNotification * _Nonnull note) {
+        __strong ContactViewController *strongSelf = weakSelf;
+        if (strongSelf) {
+            NSDictionary *info = note.userInfo;
+            NSString *state = info[@"state"];
+            if([state isEqualToString:@"empty"]) {
+                [strongSelf->sendMessageBarButtonItem setEnabled:NO];
+            }else if([state isEqualToString:@"fit"]) {
+                [self->sendMessageBarButtonItem setEnabled:YES];
+            }else {
+                [strongSelf->sendMessageBarButtonItem setEnabled:NO];
+                UIAlertController *alertController = [UIAlertController
+                                                      alertControllerWithTitle:@"Limitation reach"
+                                                      message:@"Can't invite more than 5 people at a time"
+                                                      preferredStyle:UIAlertControllerStyleAlert];
+                [alertController addAction:[UIAlertAction
+                                            actionWithTitle:@"Ok"
+                                            style:UIAlertActionStyleDefault
+                                            handler:nil]];
+                [strongSelf presentViewController:alertController animated:true completion:nil];
+            }
+        }
+    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name: CNContactStoreDidChangeNotification object: nil];
     [NSNotificationCenter.defaultCenter removeObserver:self name:@"com.piendop.contactPickerCollectionViewState" object:nil];
-}
-
-//MARK: Contacts Notification
-- (void)updateContacts {
-    [stackView updateContacts];
-}
-
-- (void)updateSendSMSButton:(NSNotification *)notification {
-    NSDictionary *info = notification.userInfo;
-    NSString *state = info[@"state"];
-    if([state isEqualToString:@"empty"]) {
-        [sendMessageBarButtonItem setEnabled:NO];
-    }else if([state isEqualToString:@"fit"]) {
-        [sendMessageBarButtonItem setEnabled:YES];
-    }else {
-        [sendMessageBarButtonItem setEnabled:YES];
-        UIAlertController *alertController = [UIAlertController
-                                              alertControllerWithTitle:@"Limitation reach"
-                                              message:@"Can't invite more than 5 people at a time"
-                                              preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:[UIAlertAction
-                                    actionWithTitle:@"Ok"
-                                    style:UIAlertActionStyleDefault
-                                    handler:nil]];
-        [self presentViewController:alertController animated:true completion:nil];
-    }
 }
 
 //MARK: Send message
@@ -103,7 +115,7 @@
     for(int i = 0; i < pickedContactFullnames.count-1; ++i) {
         [text appendFormat:@"%@, ", pickedContactFullnames[i]];
     }
-    [text appendFormat:@"%@.", pickedContactFullnames[pickedContactFullnames.count-1]];
+    [text appendFormat:@" and %@.", pickedContactFullnames[pickedContactFullnames.count-1]];
     UIAlertController *alertController = [UIAlertController
                                           alertControllerWithTitle:@"Send invitation"
                                           message:text

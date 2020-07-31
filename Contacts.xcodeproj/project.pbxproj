@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		530165ED24D3BB6000AC7FD0 /* ContactImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 530165EC24D3BB6000AC7FD0 /* ContactImageCache.m */; };
+		530165F724D3D42800AC7FD0 /* NSNotificationCenter+BlockAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 530165F624D3D42800AC7FD0 /* NSNotificationCenter+BlockAdditions.m */; };
 		53096CA224C095F5003D9909 /* ContactNavigationBarItemStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53096CA124C095F5003D9909 /* ContactNavigationBarItemStackView.m */; };
 		53096CA624C0A2E1003D9909 /* ContactPickerCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53096CA524C0A2E1003D9909 /* ContactPickerCollectionView.m */; };
 		53096CA924C0A509003D9909 /* ContactPickerCollectionViewViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53096CA824C0A509003D9909 /* ContactPickerCollectionViewViewModel.m */; };
@@ -57,6 +58,9 @@
 /* Begin PBXFileReference section */
 		530165EB24D3BB6000AC7FD0 /* ContactImageCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactImageCache.h; sourceTree = "<group>"; };
 		530165EC24D3BB6000AC7FD0 /* ContactImageCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactImageCache.m; sourceTree = "<group>"; };
+		530165F524D3D42800AC7FD0 /* NSNotificationCenter+BlockAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+BlockAdditions.h"; sourceTree = "<group>"; };
+		530165F624D3D42800AC7FD0 /* NSNotificationCenter+BlockAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+BlockAdditions.m"; sourceTree = "<group>"; };
+		530165F924D3FD0800AC7FD0 /* ContactTableViewDataSourcePickedContactsProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactTableViewDataSourcePickedContactsProtocol.h; sourceTree = "<group>"; };
 		53096CA024C095F5003D9909 /* ContactNavigationBarItemStackView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactNavigationBarItemStackView.h; sourceTree = "<group>"; };
 		53096CA124C095F5003D9909 /* ContactNavigationBarItemStackView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactNavigationBarItemStackView.m; sourceTree = "<group>"; };
 		53096CA424C0A2E1003D9909 /* ContactPickerCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactPickerCollectionView.h; sourceTree = "<group>"; };
@@ -145,6 +149,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		530165EE24D3C6A500AC7FD0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				53A8CBCC24BD9DA800763476 /* ContactService.h */,
+				53A8CBCD24BD9DA800763476 /* ContactService.m */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		530165EF24D3C70000AC7FD0 /* DataLayer */ = {
+			isa = PBXGroup;
+			children = (
+				530165F124D3C72200AC7FD0 /* ContactModel */,
+				530165F024D3C71100AC7FD0 /* ContactStore */,
+			);
+			path = DataLayer;
+			sourceTree = "<group>";
+		};
+		530165F024D3C71100AC7FD0 /* ContactStore */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ContactStore;
+			sourceTree = "<group>";
+		};
+		530165F124D3C72200AC7FD0 /* ContactModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ContactModel;
+			sourceTree = "<group>";
+		};
 		53096C9F24C095B9003D9909 /* ContactNavigationBarItemTitleStackView */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,14 +199,6 @@
 				53096CA524C0A2E1003D9909 /* ContactPickerCollectionView.m */,
 			);
 			path = CollectionView;
-			sourceTree = "<group>";
-		};
-		533452EC24BA00950098396C /* TestMocks */ = {
-			isa = PBXGroup;
-			children = (
-				5377208A24BC3D5C00AF3195 /* ViewModels */,
-			);
-			path = TestMocks;
 			sourceTree = "<group>";
 		};
 		534E45FF24B85D17006C56B1 = {
@@ -196,8 +224,8 @@
 		534E460A24B85D17006C56B1 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
-				53A8CBCB24BD9D7600763476 /* ServiceLayer */,
-				533452EC24BA00950098396C /* TestMocks */,
+				530165EF24D3C70000AC7FD0 /* DataLayer */,
+				53A8CBCB24BD9D7600763476 /* BusinessLayer */,
 				5377208B24BC3D6E00AF3195 /* PresentationLayer */,
 				534E464024B85D30006C56B1 /* SceneAppDelegate */,
 				534E461724B85D19006C56B1 /* Assets.xcassets */,
@@ -243,6 +271,8 @@
 			children = (
 				534E461124B85D17006C56B1 /* ContactViewController.h */,
 				534E461224B85D17006C56B1 /* ContactViewController.m */,
+				530165F524D3D42800AC7FD0 /* NSNotificationCenter+BlockAdditions.h */,
+				530165F624D3D42800AC7FD0 /* NSNotificationCenter+BlockAdditions.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -274,17 +304,9 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		5377208A24BC3D5C00AF3195 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
 		5377208B24BC3D6E00AF3195 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
-				5377209224BC709900AF3195 /* Models */,
 				534E464624B86C18006C56B1 /* ViewModels */,
 				534E464224B8641E006C56B1 /* Views */,
 				534E464124B85D3E006C56B1 /* ViewControllers */,
@@ -322,6 +344,7 @@
 				5377209D24BC921000AF3195 /* ContactTableViewDataSourceProtocol.h */,
 				530165EB24D3BB6000AC7FD0 /* ContactImageCache.h */,
 				530165EC24D3BB6000AC7FD0 /* ContactImageCache.m */,
+				530165F924D3FD0800AC7FD0 /* ContactTableViewDataSourcePickedContactsProtocol.h */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -346,13 +369,13 @@
 			path = Button;
 			sourceTree = "<group>";
 		};
-		53A8CBCB24BD9D7600763476 /* ServiceLayer */ = {
+		53A8CBCB24BD9D7600763476 /* BusinessLayer */ = {
 			isa = PBXGroup;
 			children = (
-				53A8CBCC24BD9DA800763476 /* ContactService.h */,
-				53A8CBCD24BD9DA800763476 /* ContactService.m */,
+				530165EE24D3C6A500AC7FD0 /* Services */,
+				5377209224BC709900AF3195 /* Models */,
 			);
-			path = ServiceLayer;
+			path = BusinessLayer;
 			sourceTree = "<group>";
 		};
 		53A8CBDC24BE062600763476 /* Delegate */ = {
@@ -562,6 +585,7 @@
 				534E461024B85D17006C56B1 /* SceneDelegate.m in Sources */,
 				530165ED24D3BB6000AC7FD0 /* ContactImageCache.m in Sources */,
 				53A8CBD424BDABCC00763476 /* ContactModel.m in Sources */,
+				530165F724D3D42800AC7FD0 /* NSNotificationCenter+BlockAdditions.m in Sources */,
 				5377209C24BC8F3500AF3195 /* ContactTableView.m in Sources */,
 				533452F224BA029C0098396C /* ContactTableViewCell.m in Sources */,
 				53CADCAE24C156B8007A9BA9 /* ContactPickerCollectionViewCell.m in Sources */,

@@ -8,13 +8,27 @@
 
 #import "ContactTableViewDelegate.h"
 
+@interface ContactTableViewDelegate()
+@property NSMutableSet *pickedContacts;
+@end
+
 @implementation ContactTableViewDelegate
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _pickedContacts = [[NSMutableSet alloc] init];
+    }
+    return self;
+}
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ContactTableViewCell *cell = (ContactTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     BOOL isOverloaded = [self pickCell:cell];
     if(!isOverloaded) {
         [cell.checkBox setChecked:YES];
+        [_pickedContacts addObject:cell.viewModel.getIdentifier];
         return indexPath;
     }
     [cell.checkBox setChecked:NO];
@@ -24,6 +38,7 @@
 - (NSIndexPath *)tableView:(UITableView *)tableView willDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     ContactTableViewCell *cell = (ContactTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     [cell.checkBox setChecked:NO];
+    [_pickedContacts removeObject:cell.viewModel.getIdentifier];
     [self unpickCell:cell];
     return indexPath;
 }
@@ -38,6 +53,10 @@
 
 - (BOOL) pickCell:(ContactTableViewCell *)cell{
     return [self.delegate pickContactWithIdentifier:[cell.viewModel getIdentifier] image:cell.cellImageView.image andFullName:[cell.viewModel getFullName]];
+}
+
+- (NSSet *)getPickedContacts {
+    return _pickedContacts;
 }
 
 @end

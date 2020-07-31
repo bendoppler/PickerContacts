@@ -55,7 +55,6 @@
         [boxPath fill];
         [boxPath stroke];
     }
-    [self setNeedsDisplay];
 }
 
 - (void)setChecked:(BOOL)isChecked {

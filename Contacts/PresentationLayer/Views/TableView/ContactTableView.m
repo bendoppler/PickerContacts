@@ -49,6 +49,7 @@
 - (void)setDataSource:(id)dataSource {
     [super setDataSource:dataSource];
     _dataSourceDelegate = dataSource;
+    _dataSourceDelegate.delegate = _tableViewDelegate;
 }
 
 - (void)setDelegate:(id<UITableViewDelegate>)delegate {

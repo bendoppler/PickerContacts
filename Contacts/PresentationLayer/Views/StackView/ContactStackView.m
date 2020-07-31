@@ -60,7 +60,11 @@
         [_tableView setHidden:YES];
         [_emptyView setHidden:NO];
         [_emptyView.label setText:@"This app needs permission to access contacts. Please enable it in settings."];
-    }else if ([_service status] == CNAuthorizationStatusAuthorized) {
+    }else if ([_service status] == CNAuthorizationStatusRestricted) {
+        [_tableView setHidden:YES];
+        [_emptyView setHidden:NO];
+        [_emptyView.label setText:@"This app needs permission to access contacts. Please enable it in settings."];
+    }else if(_service.status == CNAuthorizationStatusAuthorized) {
         [_emptyView setHidden:YES];
         [_tableView setHidden:NO];
         [self updateContacts];
@@ -124,7 +128,7 @@
     [_tableView reloadData];
 }
 
-//MARK: Collection view state observer
+//MARK: Observer
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if([keyPath isEqualToString:@"state"]) {

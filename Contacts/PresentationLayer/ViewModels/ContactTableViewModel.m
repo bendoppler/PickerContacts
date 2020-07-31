@@ -134,4 +134,5 @@
     return _searchTextData;
 }
 
+
 @end

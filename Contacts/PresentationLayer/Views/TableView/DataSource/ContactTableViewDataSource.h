@@ -11,12 +11,14 @@
 #import "ContactTableViewDataSourceProtocol.h"
 #import "ContactModel.h"
 #import "ContactImageCache.h"
+#import "ContactTableViewDataSourcePickedContactsProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ContactTableViewDataSource : NSObject<UITableViewDataSource>
 
 @property id<ContactTableViewDataSourceProtocol> viewModel;
+@property id<ContactTableViewDataSourcePickedContactsProtocol> delegate;
 -(instancetype) initWithViewModel:(id<ContactTableViewDataSourceProtocol>)viewModel;
 - (void)setDataWithSearchText:(NSString *)searchText;
 @end

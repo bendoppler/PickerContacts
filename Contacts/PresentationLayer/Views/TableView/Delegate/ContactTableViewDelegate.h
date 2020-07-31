@@ -10,11 +10,11 @@
 #import "ContactTableViewCell.h"
 #import <UIKit/UIKit.h>
 #import "ContactPickerCollectionViewDataSource.h"
-#import "ContactTableViewDelegatePickContactsDelegate.h"
+#import "ContactTableViewDataSourcePickedContactsProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ContactTableViewDelegate : NSObject<UITableViewDelegate>
+@interface ContactTableViewDelegate : NSObject<UITableViewDelegate, ContactTableViewDataSourcePickedContactsProtocol>
 
 @property (nonatomic, weak) id<ContactTableViewDelegatePickContactsDelegate> delegate;
 

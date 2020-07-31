@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ContactService : NSObject<ContactStackViewProtocol>
 
+
 @end
 
 NS_ASSUME_NONNULL_END
