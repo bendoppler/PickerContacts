@@ -8,6 +8,8 @@
 
 #import "ContactTableViewDelegate.h"
 
+const NSUInteger NUMBER_OF_INVITATION_LIMIT = 5;
+
 @interface ContactTableViewDelegate()
 @property NSMutableSet *pickedContacts;
 @end
@@ -45,6 +47,15 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return tableView.superview.bounds.size.height/8;
+}
+
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    ContactTableViewCell *cell = (ContactTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    if(_pickedContacts.count < NUMBER_OF_INVITATION_LIMIT) {
+        return YES;
+    }
+    [self pickCell:cell];
+    return [_pickedContacts containsObject:cell.viewModel.getIdentifier];
 }
 
 - (void) unpickCell:(ContactTableViewCell *)cell {

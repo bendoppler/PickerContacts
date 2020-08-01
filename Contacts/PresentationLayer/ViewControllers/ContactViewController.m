@@ -10,7 +10,7 @@
 
 
 @interface ContactViewController () {
-    ContactStackView *stackView;
+    ContactView *stackView;
     ContactService *contactService;
     UILabel *titleLabel;
     BOOL isInPickingMode;
@@ -44,7 +44,7 @@
         contactService = [[ContactService alloc] init];
     }
     if(!stackView) {
-        stackView = [[ContactStackView alloc] initWithService:contactService];
+        stackView = [[ContactView alloc] initWithService:contactService];
         [self.view addSubview:stackView];
         [stackView
          setConstraintWithHeight:self.view.frame.size.height-self.navigationController.navigationBar.frame.size.height - UIApplication.sharedApplication.statusBarFrame.size.height
@@ -87,7 +87,7 @@
             }else if([state isEqualToString:@"fit"]) {
                 [self->sendMessageBarButtonItem setEnabled:YES];
             }else {
-                [strongSelf->sendMessageBarButtonItem setEnabled:NO];
+                [strongSelf->sendMessageBarButtonItem setEnabled:YES];
                 UIAlertController *alertController = [UIAlertController
                                                       alertControllerWithTitle:@"Limitation reach"
                                                       message:@"Can't invite more than 5 people at a time"

@@ -6,9 +6,9 @@
 //  Copyright © 2020 Do Thai Bao. All rights reserved.
 //
 
-#import "ContactStackView.h"
+#import "ContactView.h"
 
-@interface ContactStackView()
+@interface ContactView()
 
 @property ContactService *service;
 @property ContactTableViewModel *viewModel;
@@ -16,7 +16,7 @@
 @property CGFloat y;
 @end
 
-@implementation ContactStackView
+@implementation ContactView
 
 - (instancetype)initWithService:(ContactService *)service
 {
@@ -33,11 +33,11 @@
 }
 
 - (void)askPermission {
-    __weak ContactStackView *weakSelf = self;
+    __weak ContactView *weakSelf = self;
     switch (_service.authorizationStatus) {
         case ContactStatusNotDetermined:{
             [_service requestPermissionWithCallback:^(BOOL granted, NSError * _Nonnull error) {
-                ContactStackView *strongSelf = weakSelf;
+                ContactView *strongSelf = weakSelf;
                 if(error) {
                     [strongSelf->_tableView setHidden:YES];
                     [strongSelf->_emptyView setHidden:NO];
@@ -95,10 +95,6 @@
 
 - (void)setConstraintWithHeight:(CGFloat)height andOriginY:(CGFloat)y {
     [self setFrame:CGRectMake(0, y, self.superview.bounds.size.width, height)];
-    [self setAxis:UILayoutConstraintAxisVertical];
-    [self setAlignment:UIStackViewAlignmentFill];
-    [self setDistribution:UIStackViewDistributionFill];
-    [self setSpacing:0];
     _height = height;
     _y = y;
     if(!_collectionView) {
@@ -110,10 +106,10 @@
         [_tableView.tableViewDelegate setDelegate:_collectionView.ds.viewModel];
         [_collectionView.ds.viewModel addObserver:self forKeyPath:@"state" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:nil];
     }
-    [self addArrangedSubview:_collectionView];
-    [self addArrangedSubview:_searchBar];
-    [self addArrangedSubview:_tableView];
-    [self addArrangedSubview:_emptyView];
+    [self addSubview:_collectionView];
+    [self addSubview:_searchBar];
+    [self addSubview:_tableView];
+    [self addSubview:_emptyView];
     [_collectionView setConstraints];
     [_searchBar setConstraintsWithCollectionViewIsHidden:YES];
     [_tableView setConstraintsWithCollectionViewIsHidden:YES];
@@ -125,9 +121,9 @@
 }
 
 - (void)updateContacts {
-    __weak ContactStackView *weakSelf = self;
+    __weak ContactView *weakSelf = self;
     [_service fetchContactsWithCallback:^(NSArray<Contact *> * _Nonnull contacts, NSError * _Nonnull error) {
-        ContactStackView *strongSelf = weakSelf;
+        ContactView *strongSelf = weakSelf;
         if(error) {
             [strongSelf->_tableView setHidden:YES];
             [strongSelf->_emptyView setHidden:NO];
@@ -147,21 +143,12 @@
         NSString *state = change[NSKeyValueChangeNewKey];
         if ([state isEqualToString:@"empty"]) {
             [NSLayoutConstraint deactivateConstraints:self.constraints];
-            [self setFrame:CGRectMake(0, _y, self.superview.bounds.size.width, _height)];
-            [self setAxis:UILayoutConstraintAxisVertical];
-            [self setAlignment:UIStackViewAlignmentFill];
-            [self setDistribution:UIStackViewDistributionFill];
-            [self setSpacing:0];
             [_collectionView setHidden:YES];
+            [_searchBar setConstraintsWithCollectionViewIsHidden:YES];
             [_tableView setConstraintsWithCollectionViewIsHidden:YES];
         }else {
             if ([_collectionView isHidden] == YES) {
                 [NSLayoutConstraint deactivateConstraints:self.constraints];
-                [self setFrame:CGRectMake(0, _y, self.superview.bounds.size.width, _height)];
-                [self setAxis:UILayoutConstraintAxisVertical];
-                [self setAlignment:UIStackViewAlignmentFill];
-                [self setDistribution:UIStackViewDistributionFill];
-                [self setSpacing:0];
                 [_collectionView setHidden:NO];
                 [_searchBar setConstraintsWithCollectionViewIsHidden:NO];
                 [_tableView setConstraintsWithCollectionViewIsHidden:NO];

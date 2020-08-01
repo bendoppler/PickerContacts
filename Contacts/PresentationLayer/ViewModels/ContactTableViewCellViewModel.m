@@ -34,7 +34,7 @@
 
 - (NSString *)getAbbreviatedName {
     _abbreviatedName = @"";
-    if(_model.firstName == nil && _model.lastName == nil) {
+    if(![self validText:_model.firstName] && ![self validText:_model.lastName]) {
         return _abbreviatedName = @"#";
     }
     if(![self validText:_model.firstName] && [self validText:_model.lastName]) {

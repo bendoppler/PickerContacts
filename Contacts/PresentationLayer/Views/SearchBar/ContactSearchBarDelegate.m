@@ -14,9 +14,12 @@
     [_searchTextDelegate setDataWithSearchText:searchText];
 }
 
+
+
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     [searchBar setText:@""];
     [_searchTextDelegate setDataWithSearchText:@""];
+    [searchBar resignFirstResponder];
 }
 
 @end

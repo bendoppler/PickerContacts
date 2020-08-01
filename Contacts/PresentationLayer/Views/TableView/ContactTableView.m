@@ -35,8 +35,10 @@
     [self.widthAnchor constraintEqualToConstant:self.superview.bounds.size.width].active = YES;
     [self.centerXAnchor constraintEqualToAnchor:self.superview.centerXAnchor].active = YES;
     if (isCollectionViewHidden) {
+        [self.topAnchor constraintEqualToAnchor:self.superview.topAnchor constant:self.superview.bounds.size.height*0.1].active = YES;
         [self.heightAnchor constraintEqualToConstant:self.superview.bounds.size.height*0.9].active = YES;
     }else {
+        [self.topAnchor constraintEqualToAnchor:self.superview.topAnchor constant:self.superview.bounds.size.height*0.22].active = YES;
         [self.heightAnchor constraintEqualToConstant:self.superview.bounds.size.height*0.78].active = YES;
     }
 }

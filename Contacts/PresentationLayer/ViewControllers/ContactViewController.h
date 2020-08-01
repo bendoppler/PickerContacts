@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <Contacts/Contacts.h>
-#import "ContactStackView.h"
+#import "ContactView.h"
 #import "ContactNavigationBarItemStackView.h"
-#import "NSNotificationCenter+BlockAdditions.h"
 
 
 @interface ContactViewController : UIViewController

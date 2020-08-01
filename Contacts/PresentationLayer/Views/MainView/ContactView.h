@@ -16,7 +16,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ContactStackView : UIStackView
+@interface ContactView : UIView
 
 @property ContactTableView *tableView;
 @property ContactSearchBar *searchBar;

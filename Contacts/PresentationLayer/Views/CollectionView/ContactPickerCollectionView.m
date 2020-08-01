@@ -16,7 +16,7 @@
     self = [super initWithFrame:frame collectionViewLayout:layout];
     if(self) {
         [self setBackgroundColor:[UIColor whiteColor]];
-        [self registerClass:[ContactPickerCollectionViewCell class] forCellWithReuseIdentifier:@"contactCell"];
+        [self registerClass:[ContactPickerCollectionViewCell class] forCellWithReuseIdentifier:@"ContactCell"];
         _ds = [[ContactPickerCollectionViewDataSource alloc] init];
         [self setShowsHorizontalScrollIndicator:NO];
         [self setDataSource:_ds];
@@ -25,9 +25,7 @@
 }
 
 - (void)setConstraints {
-    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.topAnchor constraintEqualToAnchor:self.superview.topAnchor].active = YES;
-    [self.heightAnchor constraintEqualToConstant:self.superview.bounds.size.height*0.12].active = YES;
+    [self setFrame:CGRectMake(0, 0, self.superview.bounds.size.width, self.superview.bounds.size.height*0.12)];
 }
 
 @end

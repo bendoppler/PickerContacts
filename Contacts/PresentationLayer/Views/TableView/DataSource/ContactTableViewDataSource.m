@@ -61,14 +61,14 @@
     }else {
         model = [_viewModel data][indexPath.section][indexPath.row];
     }
-    if([_delegate.pickedContacts containsObject:cell.viewModel.getIdentifier]) {
-        [cell.checkBox setChecked:YES];
-        [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
-    }else{
-        [cell.checkBox setChecked:NO];
-        [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    }
     [cell.viewModel updateWithModel:model];
+    if([_delegate.pickedContacts containsObject:cell.viewModel.getIdentifier]) {
+        [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+        [cell.checkBox setChecked:YES];
+    }else{
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        [cell.checkBox setChecked:NO];
+    }
     [cell.label setText:[cell.viewModel getFullName]];
     if(![cell.checkBox.allTargets containsObject:tableView]) {
         [cell.checkBox addTarget:tableView action:@selector(checkBoxTapped:) forControlEvents:UIControlEventTouchUpInside];

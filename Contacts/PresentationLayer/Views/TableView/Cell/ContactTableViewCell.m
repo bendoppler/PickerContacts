@@ -15,7 +15,6 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        [self setSelected:YES];
         _checkBox = [CircleCheckBox new];
         _cellImageView = [UIImageView new];
         [_cellImageView setBackgroundColor:[UIColor clearColor]];

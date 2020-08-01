@@ -25,8 +25,6 @@
     return self;
 }
 
-- (void)setConstraints {
-}
 
 - (void)setConstraintsWithCollectionViewIsHidden:(BOOL)isCollectionViewHidden {
     [NSLayoutConstraint deactivateConstraints:self.constraints];
@@ -36,6 +34,7 @@
         [self.topAnchor constraintEqualToAnchor:self.superview.topAnchor].active = YES;
         [self.heightAnchor constraintEqualToConstant:self.superview.bounds.size.height*0.1].active = YES;
     }else {
+        [self.topAnchor constraintEqualToAnchor:self.superview.topAnchor constant:self.superview.bounds.size.height*0.12].active = YES;
         [self.heightAnchor constraintEqualToConstant:self.superview.bounds.size.height*0.1].active = YES;
     }
 }
