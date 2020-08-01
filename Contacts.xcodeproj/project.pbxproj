@@ -28,9 +28,11 @@
 		53A837D924C9DBFE00903898 /* ContactSearchBarDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A837D824C9DBFE00903898 /* ContactSearchBarDelegate.m */; };
 		53A8CBCE24BD9DA800763476 /* ContactService.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A8CBCD24BD9DA800763476 /* ContactService.m */; };
 		53A8CBD124BDA70700763476 /* ContactEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A8CBD024BDA70700763476 /* ContactEmptyView.m */; };
-		53A8CBD424BDABCC00763476 /* ContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A8CBD324BDABCC00763476 /* ContactModel.m */; };
-		53A8CBD724BDAF1B00763476 /* ContactModelList.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A8CBD624BDAF1B00763476 /* ContactModelList.m */; };
+		53A8CBD424BDABCC00763476 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A8CBD324BDABCC00763476 /* Contact.m */; };
 		53A8CBDF24BE067C00763476 /* ContactTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A8CBDE24BE067C00763476 /* ContactTableViewDelegate.m */; };
+		53C5AF1624D4095D00D86C1A /* ContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C5AF1424D4095D00D86C1A /* ContactModel.m */; };
+		53C5AF1A24D40A9F00D86C1A /* NSArray+Map.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C5AF1924D40A9F00D86C1A /* NSArray+Map.m */; };
+		53C5AF1D24D4105400D86C1A /* ContactStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C5AF1C24D4105400D86C1A /* ContactStore.m */; };
 		53C6956724C2A48B00D6217E /* ContactTableViewCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C6956624C2A48B00D6217E /* ContactTableViewCellViewModel.m */; };
 		53CADCAE24C156B8007A9BA9 /* ContactPickerCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CADCAD24C156B8007A9BA9 /* ContactPickerCollectionViewCell.m */; };
 		53CADCB224C1573F007A9BA9 /* ContactPickerCollectionViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 53CADCB124C1573F007A9BA9 /* ContactPickerCollectionViewDataSource.m */; };
@@ -102,13 +104,16 @@
 		53A8CBCD24BD9DA800763476 /* ContactService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactService.m; sourceTree = "<group>"; };
 		53A8CBCF24BDA70700763476 /* ContactEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactEmptyView.h; sourceTree = "<group>"; };
 		53A8CBD024BDA70700763476 /* ContactEmptyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactEmptyView.m; sourceTree = "<group>"; };
-		53A8CBD224BDABCC00763476 /* ContactModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactModel.h; sourceTree = "<group>"; };
-		53A8CBD324BDABCC00763476 /* ContactModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactModel.m; sourceTree = "<group>"; };
-		53A8CBD524BDAF1B00763476 /* ContactModelList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactModelList.h; sourceTree = "<group>"; };
-		53A8CBD624BDAF1B00763476 /* ContactModelList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactModelList.m; sourceTree = "<group>"; };
-		53A8CBDB24BDB86600763476 /* ContactTableViewModelProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactTableViewModelProtocol.h; sourceTree = "<group>"; };
+		53A8CBD224BDABCC00763476 /* Contact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
+		53A8CBD324BDABCC00763476 /* Contact.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
 		53A8CBDD24BE067C00763476 /* ContactTableViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactTableViewDelegate.h; sourceTree = "<group>"; };
 		53A8CBDE24BE067C00763476 /* ContactTableViewDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewDelegate.m; sourceTree = "<group>"; };
+		53C5AF1424D4095D00D86C1A /* ContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactModel.m; sourceTree = "<group>"; };
+		53C5AF1524D4095D00D86C1A /* ContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactModel.h; sourceTree = "<group>"; };
+		53C5AF1824D40A9F00D86C1A /* NSArray+Map.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+Map.h"; sourceTree = "<group>"; };
+		53C5AF1924D40A9F00D86C1A /* NSArray+Map.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Map.m"; sourceTree = "<group>"; };
+		53C5AF1B24D4105400D86C1A /* ContactStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactStore.h; sourceTree = "<group>"; };
+		53C5AF1C24D4105400D86C1A /* ContactStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactStore.m; sourceTree = "<group>"; };
 		53C6956524C2A48B00D6217E /* ContactTableViewCellViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactTableViewCellViewModel.h; sourceTree = "<group>"; };
 		53C6956624C2A48B00D6217E /* ContactTableViewCellViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewCellViewModel.m; sourceTree = "<group>"; };
 		53C6956B24C2FB1000D6217E /* SharedData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SharedData.h; sourceTree = "<group>"; };
@@ -121,7 +126,6 @@
 		53CB17DB24BFF3CE002B2488 /* ContactSearchBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactSearchBar.m; sourceTree = "<group>"; };
 		53CB17DD24BFF5C3002B2488 /* ContactStackView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactStackView.h; sourceTree = "<group>"; };
 		53CB17DE24BFF5C3002B2488 /* ContactStackView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactStackView.m; sourceTree = "<group>"; };
-		53CB17E324BFF85D002B2488 /* ContactStackViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactStackViewProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +165,7 @@
 		530165EF24D3C70000AC7FD0 /* DataLayer */ = {
 			isa = PBXGroup;
 			children = (
+				53C5AF1724D40A8A00D86C1A /* Utility */,
 				530165F124D3C72200AC7FD0 /* ContactModel */,
 				530165F024D3C71100AC7FD0 /* ContactStore */,
 			);
@@ -170,6 +175,8 @@
 		530165F024D3C71100AC7FD0 /* ContactStore */ = {
 			isa = PBXGroup;
 			children = (
+				53C5AF1B24D4105400D86C1A /* ContactStore.h */,
+				53C5AF1C24D4105400D86C1A /* ContactStore.m */,
 			);
 			path = ContactStore;
 			sourceTree = "<group>";
@@ -177,6 +184,8 @@
 		530165F124D3C72200AC7FD0 /* ContactModel */ = {
 			isa = PBXGroup;
 			children = (
+				53C5AF1524D4095D00D86C1A /* ContactModel.h */,
+				53C5AF1424D4095D00D86C1A /* ContactModel.m */,
 			);
 			path = ContactModel;
 			sourceTree = "<group>";
@@ -295,7 +304,6 @@
 			children = (
 				534E464724B86C4B006C56B1 /* ContactTableViewModel.h */,
 				534E464824B86C4B006C56B1 /* ContactTableViewModel.m */,
-				53A8CBDB24BDB86600763476 /* ContactTableViewModelProtocol.h */,
 				53096CA724C0A509003D9909 /* ContactPickerCollectionViewViewModel.h */,
 				53096CA824C0A509003D9909 /* ContactPickerCollectionViewViewModel.m */,
 				53C6956524C2A48B00D6217E /* ContactTableViewCellViewModel.h */,
@@ -352,10 +360,8 @@
 		5377209224BC709900AF3195 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				53A8CBD224BDABCC00763476 /* ContactModel.h */,
-				53A8CBD324BDABCC00763476 /* ContactModel.m */,
-				53A8CBD524BDAF1B00763476 /* ContactModelList.h */,
-				53A8CBD624BDAF1B00763476 /* ContactModelList.m */,
+				53A8CBD224BDABCC00763476 /* Contact.h */,
+				53A8CBD324BDABCC00763476 /* Contact.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -388,6 +394,15 @@
 			path = Delegate;
 			sourceTree = "<group>";
 		};
+		53C5AF1724D40A8A00D86C1A /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				53C5AF1824D40A9F00D86C1A /* NSArray+Map.h */,
+				53C5AF1924D40A9F00D86C1A /* NSArray+Map.m */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		53CADCAB24C156A1007A9BA9 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -411,7 +426,6 @@
 			children = (
 				53CB17DD24BFF5C3002B2488 /* ContactStackView.h */,
 				53CB17DE24BFF5C3002B2488 /* ContactStackView.m */,
-				53CB17E324BFF85D002B2488 /* ContactStackViewProtocol.h */,
 			);
 			path = StackView;
 			sourceTree = "<group>";
@@ -566,7 +580,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53A8CBD724BDAF1B00763476 /* ContactModelList.m in Sources */,
+				53C5AF1A24D40A9F00D86C1A /* NSArray+Map.m in Sources */,
 				53CB17DC24BFF3CE002B2488 /* ContactSearchBar.m in Sources */,
 				53096CA924C0A509003D9909 /* ContactPickerCollectionViewViewModel.m in Sources */,
 				53A8CBDF24BE067C00763476 /* ContactTableViewDelegate.m in Sources */,
@@ -576,6 +590,7 @@
 				5377209624BC838700AF3195 /* CircleCheckBox.m in Sources */,
 				534E460D24B85D17006C56B1 /* AppDelegate.m in Sources */,
 				5377209924BC8F2A00AF3195 /* ContactTableViewDataSource.m in Sources */,
+				53C5AF1624D4095D00D86C1A /* ContactModel.m in Sources */,
 				53096CA624C0A2E1003D9909 /* ContactPickerCollectionView.m in Sources */,
 				534E461E24B85D19006C56B1 /* main.m in Sources */,
 				53C6956724C2A48B00D6217E /* ContactTableViewCellViewModel.m in Sources */,
@@ -584,8 +599,9 @@
 				534E464924B86C4B006C56B1 /* ContactTableViewModel.m in Sources */,
 				534E461024B85D17006C56B1 /* SceneDelegate.m in Sources */,
 				530165ED24D3BB6000AC7FD0 /* ContactImageCache.m in Sources */,
-				53A8CBD424BDABCC00763476 /* ContactModel.m in Sources */,
+				53A8CBD424BDABCC00763476 /* Contact.m in Sources */,
 				530165F724D3D42800AC7FD0 /* NSNotificationCenter+BlockAdditions.m in Sources */,
+				53C5AF1D24D4105400D86C1A /* ContactStore.m in Sources */,
 				5377209C24BC8F3500AF3195 /* ContactTableView.m in Sources */,
 				533452F224BA029C0098396C /* ContactTableViewCell.m in Sources */,
 				53CADCAE24C156B8007A9BA9 /* ContactPickerCollectionViewCell.m in Sources */,

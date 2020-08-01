@@ -7,13 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Contacts/Contacts.h>
-#import "ContactStackViewProtocol.h"
+#import "ContactStore.h"
+#import "Contact.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ContactService : NSObject<ContactStackViewProtocol>
+@interface ContactService : NSObject
 
+//check current contact authorization status of the app
+-(ContactAuthorizationStatus)authorizationStatus;
+
+//request permission to access contacts
+-(void)requestPermissionWithCallback:(void(^)(BOOL granted, NSError *error))callback;
+
+//fetch contacts from data layer
+-(void)fetchContactsWithCallback:(void(^)(NSArray<Contact *> *contacts, NSError *error))callback;
 
 @end
 

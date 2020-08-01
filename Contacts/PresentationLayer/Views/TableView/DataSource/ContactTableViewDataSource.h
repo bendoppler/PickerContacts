@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ContactTableViewCell.h"
 #import "ContactTableViewDataSourceProtocol.h"
-#import "ContactModel.h"
+#import "Contact.h"
 #import "ContactImageCache.h"
 #import "ContactTableViewDataSourcePickedContactsProtocol.h"
 

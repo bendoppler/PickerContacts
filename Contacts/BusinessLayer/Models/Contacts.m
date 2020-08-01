@@ -6,17 +6,17 @@
 //  Copyright © 2020 Do Thai Bao. All rights reserved.
 //
 
-#import "ContactModelList.h"
+#import "Contacts.h"
 
-@interface ContactModelList()
+@interface Contacts()
 
 @property NSMutableSet *ids;
-@property NSMutableArray<ContactModel *> *models;
-@property NSMutableDictionary<NSString *, ContactModel *> *modelsDict;
+@property NSMutableArray<Contact *> *models;
+@property NSMutableDictionary<NSString *, Contact *> *modelsDict;
 
 @end
 
-@implementation ContactModelList
+@implementation Contacts
 
 
 - (instancetype)init
@@ -31,7 +31,7 @@
 }
 
 + (instancetype)sharedInstance {
-    static ContactModelList *sharedInstance;
+    static Contacts *sharedInstance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[self alloc] init];
@@ -39,15 +39,15 @@
     return sharedInstance;
 }
 
-- (NSArray<ContactModel *> *)contactList {
+- (NSArray<Contact *> *)contactList {
     return _models;
 }
 
-- (void)updateWithCNContacts:(NSArray<CNContact *> *)contacts {
-    for(CNContact *contact in contacts) {
+- (void)updateWithContactModels:(NSArray<ContactModel *> *)contacts {
+    for(ContactModel *contact in contacts) {
         if([_ids containsObject:contact.identifier] == NO) {
             [_ids addObject:contact.identifier];
-            [_models addObject:[[ContactModel alloc] initWithCNContact:contact]];
+            [_models addObject:[[Contact alloc] initWithContactModel:contact]];
         }
     }
 }

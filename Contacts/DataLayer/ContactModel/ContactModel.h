@@ -7,6 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Contacts/Contacts.h>
+#import "NSArray+Map.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,7 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) NSString *middleName;
 @property (nonatomic, readonly) NSString *lastName;
 @property (nonatomic, readonly) NSString *nameSuffix;
-@property (nonatomic, readonly) NSMutableArray *phoneNumbers;
+@property (nonatomic, readonly) NSArray *phoneNumbers;
+
+- (instancetype) initWithCNContact:(CNContact *)contact;
 
 @end
 

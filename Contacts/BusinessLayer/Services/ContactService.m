@@ -8,48 +8,52 @@
 
 #import "ContactService.h"
 
-@interface ContactService() {
-    NSArray *keys;
-}
+@interface ContactService()
+
+@property (nonatomic) dispatch_queue_t serialBusinessContactPickerQueue;
+
 @end
 
 @implementation ContactService
 
-- (CNContactStore *)sharedInstance {
-    static CNContactStore *store;
-    if(!store) {
-        store = [[CNContactStore alloc] init];
-    }
-    return store;
+- (ContactAuthorizationStatus)authorizationStatus {
+    return [ContactStore.sharedInstance authorizationStatus];
 }
 
-- (CNAuthorizationStatus)status {
-    return [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _serialBusinessContactPickerQueue = dispatch_queue_create("Serial business contact picker queue", DISPATCH_QUEUE_SERIAL);
+    }
+    return self;
 }
 
-
-
-- (NSArray *)keys {
-    if(!keys) {
-        keys = @[CNContactIdentifierKey,
-                 CNContactFamilyNameKey,
-                 CNContactMiddleNameKey,
-                 CNContactGivenNameKey,
-                 CNContactNameSuffixKey,
-                 CNContactPhoneNumbersKey
-        ];
-    }
-    return keys;
+- (void)requestPermissionWithCallback:(void (^)(BOOL, NSError * _Nullable))callback {
+    [ContactStore.sharedInstance requestPermissionWithCallback:^(BOOL granted, NSError * _Nullable error) {
+        callback(granted, error);
+    }];
 }
 
-- (NSArray<CNContact *> *)contacts {
-    NSPredicate *predicate = [CNContact predicateForContactsInContainerWithIdentifier:self.sharedInstance.defaultContainerIdentifier];
-    NSError *error;
-    NSArray<CNContact *> *res = [self.sharedInstance unifiedContactsMatchingPredicate:predicate keysToFetch:self.keys error:&error];
-    if(error) {
-        return nil;
-    }
-    return res;
+- (void)fetchContactsWithCallback:(void (^)(NSArray<Contact *> * _Nullable, NSError * _Nullable))callback {
+    dispatch_async(_serialBusinessContactPickerQueue, ^ {
+        [ContactStore.sharedInstance
+         fetchContactsWithCallback:^(NSArray<ContactModel *> *contacts, NSError *error) {
+            if(error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    callback(nil, error);
+                });
+            }else {
+                NSArray *businessContacts = [contacts map:^Contact*(ContactModel *obj) {
+                    return [[Contact alloc]initWithContactModel:obj];
+                }];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    callback(businessContacts, nil);
+                });
+            }
+        }
+         onQueue:self->_serialBusinessContactPickerQueue];
+    });
 }
 
 @end

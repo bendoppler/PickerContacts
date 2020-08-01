@@ -55,7 +55,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    ContactModel *model = [ContactModel new];
+    Contact *model = [Contact new];
     if(_isInSearchMode) {
         model = [_viewModel searchTextdata][indexPath.section][indexPath.row];
     }else {

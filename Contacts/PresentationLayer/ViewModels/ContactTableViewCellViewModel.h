@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ContactModel.h"
+#import "Contact.h"
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ContactTableViewCellViewModel : NSObject
 
-- (void)updateWithModel:(ContactModel *)model;
+- (void)updateWithModel:(Contact *)model;
 - (NSString *)getFullName;
 - (NSString *)getAbbreviatedName;
 - (UIColor *)getColor;

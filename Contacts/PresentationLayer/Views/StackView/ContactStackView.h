@@ -11,7 +11,6 @@
 #import "ContactSearchBar.h"
 #import "ContactTableView.h"
 #import "ContactTableViewModel.h"
-#import "ContactModelList.h"
 #import "ContactService.h"
 #import "ContactPickerCollectionView.h"
 
@@ -25,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property ContactPickerCollectionView *collectionView;
 
 - (void)askPermission;
-- (instancetype)initWithService:(id<ContactStackViewProtocol>)service;
+- (instancetype)initWithService:(ContactService *)service;
 - (void)setConstraintWithHeight:(CGFloat)height andOriginY:(CGFloat)y;
 - (void)updateContacts;
 - (NSArray *)getPickedContactFullnames;

@@ -12,7 +12,7 @@
 
 @property NSString *fullName;
 @property NSString *abbreviatedName;
-@property ContactModel *model;
+@property Contact *model;
 
 @end
 
@@ -23,12 +23,12 @@
 {
     self = [super init];
     if (self) {
-        _model = [[ContactModel alloc] init];
+        _model = [[Contact alloc] init];
     }
     return self;
 }
 
-- (void)updateWithModel:(ContactModel *)model {
+- (void)updateWithModel:(Contact *)model {
     _model = model;
 }
 
@@ -51,7 +51,7 @@
     _fullName = @"";
     if(![self validText:_model.firstName] && ![self validText:_model.middleName] && ![self validText:_model.lastName] &&
        ![self validText:_model.nameSuffix]) {
-        return _fullName = _model.phoneNumberArray.count == 0 ? nil : _model.phoneNumberArray[0];
+        return _fullName = _model.phoneNumber ? _model.phoneNumber : nil;
     }
     NSMutableString *res = [[NSMutableString alloc] init];
     if([self validText:_model.firstName]) {

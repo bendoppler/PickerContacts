@@ -10,11 +10,11 @@
 
 @interface ContactTableViewModel()
 
-@property id<ContactTableViewModelProtocol> model;
 @property (nonatomic) NSMutableArray *data;
 @property (nonatomic) NSArray *keys;
 @property (nonatomic) NSMutableArray *searchTextData;
 @property (nonatomic) NSMutableArray *searchTextKeys;
+
 @end
 
 @implementation ContactTableViewModel
@@ -53,29 +53,22 @@
     return @"#";
 }
 
-- (void)updateTableViewDataSourceWithModel:(id<ContactTableViewModelProtocol>)model {
-    //lazy load
-    if(!_model) {
-        _model = model;
+- (void)updateTableViewDataSourceWithContacts:(NSArray<Contact *> *)contacts {
+    NSMutableDictionary<NSString *,NSMutableArray *> *res = [[NSMutableDictionary alloc] init];
+    for(Contact *contact in contacts) {
+        NSString* key = [self keyFromFirstName:contact.firstName andLastName:contact.lastName];
+        if(res[key] == nil) {
+            res[key] = [[NSMutableArray alloc] init];
+        }
+        [res[key] addObject:contact];
     }
-    if(_model) {
-        NSArray<ContactModel *> *contacts = [_model contactList];
-        NSMutableDictionary<NSString *,NSMutableArray *> *res = [[NSMutableDictionary alloc] init];
-        for(ContactModel *contact in contacts) {
-            NSString* key = [self keyFromFirstName:contact.firstName andLastName:contact.lastName];
-            if(res[key] == nil) {
-                res[key] = [[NSMutableArray alloc] init];
-            }
-            [res[key] addObject:contact];
-        }
-        NSArray *keys = [res allKeys];
-        _keys = [keys sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-            return [obj1 compare:obj2];
-        }];
-        [_data removeAllObjects];
-        for(NSString* key in _keys) {
-            [_data addObject:res[key]];
-        }
+    NSArray *keys = [res allKeys];
+    _keys = [keys sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        return [obj1 compare:obj2];
+    }];
+    [_data removeAllObjects];
+    for(NSString* key in _keys) {
+        [_data addObject:res[key]];
     }
 }
 
@@ -84,7 +77,7 @@
     [_searchTextData removeAllObjects];
     for(int i = 0; i < _data.count; ++i) {
         NSArray *temp = _data[i];
-        NSArray *matchedContacts = [temp objectsAtIndexes:[temp indexesOfObjectsPassingTest:^BOOL(ContactModel* obj, NSUInteger idx, BOOL *stop) {
+        NSArray *matchedContacts = [temp objectsAtIndexes:[temp indexesOfObjectsPassingTest:^BOOL(Contact* obj, NSUInteger idx, BOOL *stop) {
             return [self isMatchedBetweenContact:obj andSearchText:searchText];
         }]];
         if(matchedContacts.count > 0) {
@@ -94,7 +87,7 @@
     }
 }
 
-- (BOOL)isMatchedBetweenContact:(ContactModel *)contact andSearchText:(NSString *)searchText {
+- (BOOL)isMatchedBetweenContact:(Contact *)contact andSearchText:(NSString *)searchText {
     NSString *fullName = [self getFullNameFromContact:contact];
     if([fullName.lowercaseString hasPrefix:searchText.lowercaseString]) {
         return YES;
@@ -102,12 +95,12 @@
     return NO;
 }
 
-- (NSString *)getFullNameFromContact:(ContactModel *)contact{
-    NSMutableString *fullName = [NSMutableString stringWithString:@""];
+- (NSString *)getFullNameFromContact:(Contact *)contact{
     if(![self validText:contact.firstName] && ![self validText:contact.middleName] && ![self validText:contact.lastName] &&
        ![self validText:contact.nameSuffix]) {
-        return fullName = contact.phoneNumberArray.count == 0 ? nil : contact.phoneNumberArray[0];
+        return contact.phoneNumber ? contact.phoneNumber : nil;
     }
+    NSMutableString *fullName = [NSMutableString stringWithString:@""];
     if([self validText:contact.firstName]) {
         [fullName appendFormat:@"%@ ", contact.firstName];
     }

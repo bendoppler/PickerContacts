@@ -10,7 +10,7 @@
 
 @interface ContactStackView()
 
-@property id<ContactStackViewProtocol> service;
+@property ContactService *service;
 @property ContactTableViewModel *viewModel;
 @property CGFloat height;
 @property CGFloat y;
@@ -18,7 +18,7 @@
 
 @implementation ContactStackView
 
-- (instancetype)initWithService:(id<ContactStackViewProtocol>)service
+- (instancetype)initWithService:(ContactService *)service
 {
     self = [super init];
     if (self) {
@@ -33,41 +33,45 @@
 }
 
 - (void)askPermission {
-    if ([_service status] == CNAuthorizationStatusNotDetermined) {
-        __weak ContactStackView *weakSelf = self;
-            [[_service sharedInstance] requestAccessForEntityType:CNEntityTypeContacts
-                                                      completionHandler:^(BOOL granted, NSError * _Nullable error) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    ContactStackView *strongSelf = weakSelf;
-                    if(strongSelf) {
-                        if(error) {
-                            [strongSelf->_tableView setHidden:YES];
-                            [strongSelf->_emptyView setHidden:NO];
-                            [strongSelf->_emptyView.label setText:@"Error when asking user's contacts' permission"];
-                        }else if(!granted) {
-                            [strongSelf->_tableView setHidden:YES];
-                            [strongSelf->_emptyView setHidden:NO];
-                            [strongSelf->_emptyView.label setText:@"This app needs permission to access contacts. Please enable it in settings."];
-                        }else if(granted && !error) {
-                            [strongSelf->_emptyView setHidden:YES];
-                            [strongSelf->_tableView setHidden:NO];
-                            [strongSelf updateContacts];
-                        }
-                    }
-                });
+    __weak ContactStackView *weakSelf = self;
+    switch (_service.authorizationStatus) {
+        case ContactStatusNotDetermined:{
+            [_service requestPermissionWithCallback:^(BOOL granted, NSError * _Nonnull error) {
+                ContactStackView *strongSelf = weakSelf;
+                if(error) {
+                    [strongSelf->_tableView setHidden:YES];
+                    [strongSelf->_emptyView setHidden:NO];
+                    [strongSelf->_emptyView.label setText:@"Error when asking user's contacts' permission"];
+                }else if(!granted) {
+                    [strongSelf->_tableView setHidden:YES];
+                    [strongSelf->_emptyView setHidden:NO];
+                    [strongSelf->_emptyView.label setText:@"This app needs permission to access contacts. Please enable it in settings."];
+                }else if(granted && !error) {
+                    [strongSelf->_emptyView setHidden:YES];
+                    [strongSelf->_tableView setHidden:NO];
+                    [strongSelf updateContacts];
+                }
             }];
-    }else if ([_service status] == CNAuthorizationStatusDenied){
-        [_tableView setHidden:YES];
-        [_emptyView setHidden:NO];
-        [_emptyView.label setText:@"This app needs permission to access contacts. Please enable it in settings."];
-    }else if ([_service status] == CNAuthorizationStatusRestricted) {
-        [_tableView setHidden:YES];
-        [_emptyView setHidden:NO];
-        [_emptyView.label setText:@"This app needs permission to access contacts. Please enable it in settings."];
-    }else if(_service.status == CNAuthorizationStatusAuthorized) {
-        [_emptyView setHidden:YES];
-        [_tableView setHidden:NO];
-        [self updateContacts];
+            break;
+        }
+        case ContactStatusDenied:{
+            [_tableView setHidden:YES];
+            [_emptyView setHidden:NO];
+            [_emptyView.label setText:@"This app needs permission to access contacts. Please enable it in settings."];
+            break;
+        }
+        case ContactStatusRestricted:{
+            [_tableView setHidden:YES];
+            [_emptyView setHidden:NO];
+            [_emptyView.label setText:@"This app needs permission to access contacts. Please enable it in settings."];
+            break;
+        }
+        case ContactStatusAuthorized:{
+            [_emptyView setHidden:YES];
+            [_tableView setHidden:NO];
+            [self updateContacts];
+            break;
+        }
     }
 }
 
@@ -121,11 +125,19 @@
 }
 
 - (void)updateContacts {
-    NSArray<CNContact *> *contacts = [_service contacts];
-    [[ContactModelList sharedInstance] updateWithCNContacts:contacts];
-    [_viewModel updateTableViewDataSourceWithModel:[ContactModelList sharedInstance]];
-    [_tableView setDataSource:[[ContactTableViewDataSource alloc] initWithViewModel: _viewModel]];
-    [_tableView reloadData];
+    __weak ContactStackView *weakSelf = self;
+    [_service fetchContactsWithCallback:^(NSArray<Contact *> * _Nonnull contacts, NSError * _Nonnull error) {
+        ContactStackView *strongSelf = weakSelf;
+        if(error) {
+            [strongSelf->_tableView setHidden:YES];
+            [strongSelf->_emptyView setHidden:NO];
+            [strongSelf->_emptyView.label setText:@"Error when asking user's contacts' permission"];
+        }else {
+            [strongSelf->_viewModel updateTableViewDataSourceWithContacts:contacts];
+            [strongSelf->_tableView setDataSource:[[ContactTableViewDataSource alloc] initWithViewModel:strongSelf->_viewModel]];
+            [strongSelf->_tableView reloadData];
+        }
+    }];
 }
 
 //MARK: Observer

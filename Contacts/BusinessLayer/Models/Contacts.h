@@ -7,15 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ContactModel.h"
-#import "ContactTableViewModelProtocol.h"
+#import "Contact.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ContactModelList : NSObject<ContactTableViewModelProtocol>
+@interface Contacts : NSObject
 
 + (instancetype)sharedInstance;
-- (void)updateWithCNContacts:(NSArray<CNContact *> *)contacts;
+- (void)updateWithContactModels:(NSArray<CNContact *> *)contacts;
 
 @end
 
