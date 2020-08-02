@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ContactPickerCollectionView : UICollectionView
 
-@property ContactPickerCollectionViewDataSource *ds;
+@property ContactPickerCollectionViewDataSource *collectionViewDataSource;
 - (void)setConstraints;
 @end
 

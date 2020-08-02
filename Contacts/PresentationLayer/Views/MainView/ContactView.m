@@ -75,23 +75,6 @@
     }
 }
 
-- (void)removeTableView {
-    for(UIView *subview in self.subviews) {
-        if([subview isMemberOfClass:[ContactTableView class]]) {
-            [subview removeFromSuperview];
-            break;
-        }
-    }
-}
-
-- (void)removeLabel {
-    for(UIView *subview in self.subviews) {
-        if([subview isMemberOfClass:[ContactEmptyView class]]) {
-            [subview removeFromSuperview];
-            break;
-        }
-    }
-}
 
 - (void)setConstraintWithHeight:(CGFloat)height andOriginY:(CGFloat)y {
     [self setFrame:CGRectMake(0, y, self.superview.bounds.size.width, height)];
@@ -103,8 +86,8 @@
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         [flowLayout setMinimumLineSpacing:20];
         _collectionView = [[ContactPickerCollectionView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, height/6) collectionViewLayout:flowLayout];
-        [_tableView.tableViewDelegate setDelegate:_collectionView.ds.viewModel];
-        [_collectionView.ds.viewModel addObserver:self forKeyPath:@"state" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:nil];
+        [_tableView.tableViewDelegate setPickContactsDelegate:_collectionView.collectionViewDataSource.viewModel];
+        [_collectionView.collectionViewDataSource.viewModel addObserver:self forKeyPath:@"state" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:nil];
     }
     [self addSubview:_collectionView];
     [self addSubview:_searchBar];
@@ -159,12 +142,12 @@
 }
 
 - (NSArray *)getPickedContactFullnames {
-    return [_collectionView.ds getPickedContactFullnames];
+    return [_collectionView.collectionViewDataSource getPickedContactFullnames];
 }
 
 - (void)dealloc
 {
-    [_collectionView.ds.viewModel removeObserver:self forKeyPath:@"state"];
+    [_collectionView.collectionViewDataSource.viewModel removeObserver:self forKeyPath:@"state"];
 }
 
 

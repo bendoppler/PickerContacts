@@ -12,6 +12,8 @@ const NSUInteger NUMBER_OF_INVITATION_LIMIT = 5;
 
 @interface ContactTableViewDelegate()
 @property NSMutableSet *pickedContacts;
+@property NSString *state;
+@property NSInteger count;
 @end
 
 @implementation ContactTableViewDelegate
@@ -21,26 +23,26 @@ const NSUInteger NUMBER_OF_INVITATION_LIMIT = 5;
     self = [super init];
     if (self) {
         _pickedContacts = [[NSMutableSet alloc] init];
+        _state = [[NSString alloc] init];
+        _count = 0;
     }
     return self;
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ContactTableViewCell *cell = (ContactTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-    BOOL isOverloaded = [self pickCell:cell];
-    if(!isOverloaded) {
-        [cell.checkBox setChecked:YES];
-        [_pickedContacts addObject:cell.viewModel.getIdentifier];
-        return indexPath;
-    }
-    [cell.checkBox setChecked:NO];
-    return nil;
+    [cell.checkBox setChecked:YES];
+    [_pickedContacts addObject:cell.viewModel.getIdentifier];
+    [self updateState];
+    [self pickCell:cell];
+    return indexPath;
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     ContactTableViewCell *cell = (ContactTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     [cell.checkBox setChecked:NO];
     [_pickedContacts removeObject:cell.viewModel.getIdentifier];
+    [self updateState];
     [self unpickCell:cell];
     return indexPath;
 }
@@ -54,16 +56,36 @@ const NSUInteger NUMBER_OF_INVITATION_LIMIT = 5;
     if(_pickedContacts.count < NUMBER_OF_INVITATION_LIMIT) {
         return YES;
     }
-    [self pickCell:cell];
+    if(![_pickedContacts containsObject:cell.viewModel.getIdentifier]) {
+        _state = @"overload";
+        [self.sendSMSDelegate updateSMSButtonWithState:_state];
+    }
     return [_pickedContacts containsObject:cell.viewModel.getIdentifier];
 }
 
 - (void) unpickCell:(ContactTableViewCell *)cell {
-    [self.delegate unpickContactWithIdentifier:[cell.viewModel getIdentifier]];
+    [self.pickContactsDelegate unpickContactWithIdentifier:[cell.viewModel getIdentifier]];
 }
 
-- (BOOL) pickCell:(ContactTableViewCell *)cell{
-    return [self.delegate pickContactWithIdentifier:[cell.viewModel getIdentifier] image:cell.cellImageView.image andFullName:[cell.viewModel getFullName]];
+- (void)pickCell:(ContactTableViewCell *)cell{
+    [self.pickContactsDelegate pickContactWithIdentifier:[cell.viewModel getIdentifier] image:cell.cellImageView.image andFullName:[cell.viewModel getFullName]];
+}
+
+- (void)updateState {
+    NSString *newState;
+    if(_pickedContacts.count == 0) {
+        newState = @"empty";
+    }else {
+        newState = @"fit";
+    }
+    if(![_state isEqualToString:newState]) {
+        _state = newState;
+        [_sendSMSDelegate updateSMSButtonWithState:_state];
+    }
+    if(_count != _pickedContacts.count) {
+        _count = _pickedContacts.count;
+        [_pickedCountLabelDelegate updatePickedContactLabelWithCount:_count];
+    }
 }
 
 - (NSSet *)getPickedContacts {

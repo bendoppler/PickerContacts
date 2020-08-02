@@ -31,37 +31,24 @@ NSUInteger NUMBER_OF_ITEMS_LIMIT = 5;
 }
 
 
-- (BOOL)pickContactWithIdentifier:(NSString *)identifier image:(UIImage *)image andFullName:(nonnull NSString *)fullName {
-    NSMutableDictionary *state = [[NSMutableDictionary alloc] init];
-    if(_identifiers.count == NUMBER_OF_ITEMS_LIMIT) {
-        [self setValue:@"overload" forKey:@"state"];
-        state[@"state"] = @"overload";
-    }else {
+- (void)pickContactWithIdentifier:(NSString *)identifier image:(UIImage *)image andFullName:(nonnull NSString *)fullName {
+    if(_identifiers.count < NUMBER_OF_ITEMS_LIMIT) {
         [_identifiers addObject:identifier];
         [_fullNames addObject:fullName];
         [_images addObject:image];
-        [self setValue:@"fit" forKey:@"state"];
-        state[@"state"] = @"fit";
+        [self setValue:@"non-empty" forKey:@"state"];
     }
-    state[@"count"] = @(_images.count);
-    [NSNotificationCenter.defaultCenter postNotificationName:@"com.piendop.contactPickerCollectionViewState" object:self userInfo:state];
-    return [state[@"state"] isEqualToString:@"overload"];
 }
 - (void)unpickContactWithIdentifier:(NSString *)identifier {
     NSUInteger index = [_identifiers indexOfObject:identifier];
     [_images removeObjectAtIndex:index];
     [_fullNames removeObjectAtIndex:index];
     [_identifiers removeObjectAtIndex:index];
-    NSMutableDictionary *state = [[NSMutableDictionary alloc] init];
-    if(_images.count == 0) {
+    if(_identifiers.count == 0) {
         [self setValue:@"empty" forKey:@"state"];
-        state [@"state"] = @"empty";
     }else {
-        [self setValue:@"fit" forKey:@"state"];
-        state[@"state"] = @"fit";
+        [self setValue:@"non-empty" forKey:@"state"];
     }
-    state[@"count"] = @(_images.count);
-    [NSNotificationCenter.defaultCenter postNotificationName:@"com.piendop.contactPickerCollectionViewState" object:self userInfo:state];
 }
 
 - (NSArray *)data {

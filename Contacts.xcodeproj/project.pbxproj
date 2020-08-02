@@ -105,6 +105,8 @@
 		53A8CBD324BDABCC00763476 /* Contact.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
 		53A8CBDD24BE067C00763476 /* ContactTableViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactTableViewDelegate.h; sourceTree = "<group>"; };
 		53A8CBDE24BE067C00763476 /* ContactTableViewDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewDelegate.m; sourceTree = "<group>"; };
+		53BDC44624D6C0EC005080E1 /* ContactTableViewDelegateSendSMSDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactTableViewDelegateSendSMSDelegate.h; sourceTree = "<group>"; };
+		53BDC44724D6CD4F005080E1 /* ContactTableViewDelegatePickedCountLabelDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactTableViewDelegatePickedCountLabelDelegate.h; sourceTree = "<group>"; };
 		53C5AF1424D4095D00D86C1A /* ContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactModel.m; sourceTree = "<group>"; };
 		53C5AF1524D4095D00D86C1A /* ContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactModel.h; sourceTree = "<group>"; };
 		53C5AF1824D40A9F00D86C1A /* NSArray+Map.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+Map.h"; sourceTree = "<group>"; };
@@ -393,6 +395,8 @@
 				53A8CBDD24BE067C00763476 /* ContactTableViewDelegate.h */,
 				53A8CBDE24BE067C00763476 /* ContactTableViewDelegate.m */,
 				53CADCB324C205B1007A9BA9 /* ContactTableViewDelegatePickContactsDelegate.h */,
+				53BDC44624D6C0EC005080E1 /* ContactTableViewDelegateSendSMSDelegate.h */,
+				53BDC44724D6CD4F005080E1 /* ContactTableViewDelegatePickedCountLabelDelegate.h */,
 			);
 			path = Delegate;
 			sourceTree = "<group>";

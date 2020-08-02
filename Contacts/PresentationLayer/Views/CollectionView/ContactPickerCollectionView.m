@@ -17,9 +17,9 @@
     if(self) {
         [self setBackgroundColor:[UIColor whiteColor]];
         [self registerClass:[ContactPickerCollectionViewCell class] forCellWithReuseIdentifier:@"ContactCell"];
-        _ds = [[ContactPickerCollectionViewDataSource alloc] init];
+        _collectionViewDataSource = [[ContactPickerCollectionViewDataSource alloc] init];
         [self setShowsHorizontalScrollIndicator:NO];
-        [self setDataSource:_ds];
+        [self setDataSource:_collectionViewDataSource];
     }
     return self;
 }

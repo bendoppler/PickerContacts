@@ -10,7 +10,7 @@
 
 
 @interface ContactViewController () {
-    ContactView *stackView;
+    ContactView *contactView;
     ContactService *contactService;
     UILabel *titleLabel;
     BOOL isInPickingMode;
@@ -43,12 +43,14 @@
     if(!contactService) {
         contactService = [[ContactService alloc] init];
     }
-    if(!stackView) {
-        stackView = [[ContactView alloc] initWithService:contactService];
-        [self.view addSubview:stackView];
-        [stackView
+    if(!contactView) {
+        contactView = [[ContactView alloc] initWithService:contactService];
+        [self.view addSubview:contactView];
+        [contactView
          setConstraintWithHeight:self.view.frame.size.height-self.navigationController.navigationBar.frame.size.height - UIApplication.sharedApplication.statusBarFrame.size.height
          andOriginY:self.navigationController.navigationBar.frame.size.height + UIApplication.sharedApplication.statusBarFrame.size.height];
+        [contactView.tableView.tableViewDelegate setSendSMSDelegate:self];
+        [contactView.tableView.tableViewDelegate setPickedCountLabelDelegate:navigationBarItemView];
     }
 }
 
@@ -62,7 +64,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     __weak ContactViewController *weakSelf = self;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateContacts) name:CNContactStoreDidChangeNotification object:nil];
     [NSNotificationCenter.defaultCenter
      addObserverForName:CNContactStoreDidChangeNotification
      object:nil
@@ -70,34 +71,7 @@
      usingBlock:^(NSNotification * _Nonnull note) {
         __strong ContactViewController *strongSelf = weakSelf;
         if (strongSelf) {
-            [strongSelf->stackView updateContacts];
-        }
-    }];
-    [NSNotificationCenter.defaultCenter
-     addObserverForName:@"com.piendop.contactPickerCollectionViewState"
-     object:nil
-     queue:nil
-     usingBlock:^(NSNotification * _Nonnull note) {
-        __strong ContactViewController *strongSelf = weakSelf;
-        if (strongSelf) {
-            NSDictionary *info = note.userInfo;
-            NSString *state = info[@"state"];
-            if([state isEqualToString:@"empty"]) {
-                [strongSelf->sendMessageBarButtonItem setEnabled:NO];
-            }else if([state isEqualToString:@"fit"]) {
-                [self->sendMessageBarButtonItem setEnabled:YES];
-            }else {
-                [strongSelf->sendMessageBarButtonItem setEnabled:YES];
-                UIAlertController *alertController = [UIAlertController
-                                                      alertControllerWithTitle:@"Limitation reach"
-                                                      message:@"Can't invite more than 5 people at a time"
-                                                      preferredStyle:UIAlertControllerStyleAlert];
-                [alertController addAction:[UIAlertAction
-                                            actionWithTitle:@"Ok"
-                                            style:UIAlertActionStyleDefault
-                                            handler:nil]];
-                [strongSelf presentViewController:alertController animated:true completion:nil];
-            }
+            [strongSelf->contactView updateContacts];
         }
     }];
 }
@@ -108,14 +82,36 @@
     [NSNotificationCenter.defaultCenter removeObserver:self name:@"com.piendop.contactPickerCollectionViewState" object:nil];
 }
 
-//MARK: Send message
+//MARK: Button send sms
+- (void)updateSMSButtonWithState:(NSString *)state {
+    if([state isEqualToString:@"fit"]) {
+        [sendMessageBarButtonItem setEnabled:YES];
+    }else if([state isEqualToString:@"overload"]) {
+        [sendMessageBarButtonItem setEnabled:YES];
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:@"Limitation reach"
+                                              message:@"Can't invite more than 5 people at a time"
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction
+                                    actionWithTitle:@"Ok"
+                                    style:UIAlertActionStyleDefault
+                                    handler:nil]];
+        [self presentViewController:alertController animated:true completion:nil];
+    }else {
+        [sendMessageBarButtonItem setEnabled:NO];
+    }
+}
 - (void)sendMessage {
-    pickedContactFullnames = [stackView getPickedContactFullnames];
+    pickedContactFullnames = [contactView getPickedContactFullnames];
     NSMutableString *text = [NSMutableString stringWithString:@"Send invitation to "];
     for(int i = 0; i < pickedContactFullnames.count-1; ++i) {
         [text appendFormat:@"%@, ", pickedContactFullnames[i]];
     }
-    [text appendFormat:@" and %@.", pickedContactFullnames[pickedContactFullnames.count-1]];
+    if(pickedContactFullnames.count == 1) {
+        [text appendFormat:@"%@", pickedContactFullnames[0]];
+    }else {
+        [text appendFormat:@" and %@.", pickedContactFullnames[pickedContactFullnames.count-1]];
+    }
     UIAlertController *alertController = [UIAlertController
                                           alertControllerWithTitle:@"Send invitation"
                                           message:text
@@ -126,5 +122,6 @@
                                 handler:nil]];
     [self presentViewController:alertController animated:true completion:nil];
 }
+
 
 @end

@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ContactTableViewDelegatePickedCountLabelDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ContactNavigationBarItemStackView : UIStackView
+@interface ContactNavigationBarItemStackView : UIStackView<ContactTableViewDelegatePickedCountLabelDelegate>
 
 @property UILabel *appName;
 @property UILabel *pickedCountLabel;

@@ -11,12 +11,16 @@
 #import <UIKit/UIKit.h>
 #import "ContactPickerCollectionViewDataSource.h"
 #import "ContactTableViewDataSourcePickedContactsProtocol.h"
+#import "ContactTableViewDelegateSendSMSDelegate.h"
+#import "ContactTableViewDelegatePickedCountLabelDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ContactTableViewDelegate : NSObject<UITableViewDelegate, ContactTableViewDataSourcePickedContactsProtocol>
 
-@property (nonatomic, weak) id<ContactTableViewDelegatePickContactsDelegate> delegate;
+@property (nonatomic, weak) id<ContactTableViewDelegatePickContactsDelegate> pickContactsDelegate;
+@property (nonatomic, weak) id<ContactTableViewDelegateSendSMSDelegate> sendSMSDelegate;
+@property (nonatomic, weak) id<ContactTableViewDelegatePickedCountLabelDelegate> pickedCountLabelDelegate;
 
 @end
 

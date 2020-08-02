@@ -12,7 +12,7 @@
 #import "ContactNavigationBarItemStackView.h"
 
 
-@interface ContactViewController : UIViewController
+@interface ContactViewController : UIViewController<ContactTableViewDelegateSendSMSDelegate>
 
 @end
 

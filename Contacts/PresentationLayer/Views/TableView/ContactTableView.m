@@ -8,12 +8,6 @@
 
 #import "ContactTableView.h"
 
-@interface ContactTableView()
-
-@property NSLayoutConstraint *widthConstraint;
-@property NSLayoutConstraint *heightConstraint;
-
-@end
 
 @implementation ContactTableView
 

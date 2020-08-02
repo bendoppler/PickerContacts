@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol ContactTableViewDelegatePickContactsDelegate <NSObject>
 
-- (BOOL)pickContactWithIdentifier:(NSString *)identifier image:(UIImage *)image andFullName:(NSString *)fullName;
+- (void)pickContactWithIdentifier:(NSString *)identifier image:(UIImage *)image andFullName:(NSString *)fullName;
 
 - (void)unpickContactWithIdentifier:(NSString *)identifier ;
 
