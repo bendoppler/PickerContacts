@@ -63,23 +63,23 @@
 //MARK: Notification
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    __weak ContactViewController *weakSelf = self;
-    [NSNotificationCenter.defaultCenter
-     addObserverForName:CNContactStoreDidChangeNotification
-     object:nil
-     queue:nil
-     usingBlock:^(NSNotification * _Nonnull note) {
-        __strong ContactViewController *strongSelf = weakSelf;
-        if (strongSelf) {
-            [strongSelf->contactView updateContacts];
-        }
-    }];
+//    __weak ContactViewController *weakSelf = self;
+//    [NSNotificationCenter.defaultCenter
+//     addObserverForName:CNContactStoreDidChangeNotification
+//     object:nil
+//     queue:nil
+//     usingBlock:^(NSNotification * _Nonnull note) {
+//        __strong ContactViewController *strongSelf = weakSelf;
+//        if (strongSelf) {
+//            [strongSelf->contactView updateContacts];
+//        }
+//    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name: CNContactStoreDidChangeNotification object: nil];
-    [NSNotificationCenter.defaultCenter removeObserver:self name:@"com.piendop.contactPickerCollectionViewState" object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name: CNContactStoreDidChangeNotification object: nil];
+//    [NSNotificationCenter.defaultCenter removeObserver:self name:@"com.piendop.contactPickerCollectionViewState" object:nil];
 }
 
 //MARK: Button send sms

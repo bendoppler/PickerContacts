@@ -12,6 +12,7 @@
 
 @property ContactService *service;
 @property ContactTableViewModel *viewModel;
+@property UIRefreshControl *refreshControl;
 @property CGFloat height;
 @property CGFloat y;
 @end
@@ -27,6 +28,9 @@
         _searchBar = [[ContactSearchBar alloc] init];
         _emptyView = [[ContactEmptyView alloc] init];
         _viewModel = [[ContactTableViewModel alloc] init];
+        _refreshControl = [[UIRefreshControl alloc] init];
+        [_refreshControl addTarget:self action:@selector(updateContacts) forControlEvents:UIControlEventValueChanged];
+        [_tableView setRefreshControl:_refreshControl];
         [_searchBar.contactSearchBarDelegate setSearchTextDelegate:_tableView];
     }
     return self;
@@ -114,6 +118,7 @@
         }else {
             [strongSelf->_viewModel updateTableViewDataSourceWithContacts:contacts];
             [strongSelf->_tableView setDataSource:[[ContactTableViewDataSource alloc] initWithViewModel:strongSelf->_viewModel]];
+            [strongSelf->_refreshControl endRefreshing];
             [strongSelf->_tableView reloadData];
         }
     }];
